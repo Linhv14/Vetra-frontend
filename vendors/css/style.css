@@ -1,0 +1,350 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul li {
+    list-style: none;
+}
+
+:root {
+    --bg: #f5f4fe;
+    --pri: #ff6e40;
+    --boder: rgb(107, 107, 107)
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 350px;
+    background-color: var(--bg);
+    padding: 0 0 30px 25px;
+    transition: all 0.3s linear;
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+.sidebar .logo {
+    height: 100px;
+    padding: 25px 0;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .logo a {
+    font-size: 30px;
+    font-weight: 700;
+    color: transparent;
+    background-image: linear-gradient(to right bottom, black, var(--pri));
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.sidebar .sidebar-box {
+    height: 100%;
+    padding: 0 5px 45px 0;
+    overflow-y: scroll;
+}
+
+.sidebar-box::-webkit-scrollbar,
+.notify-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-box::-webkit-scrollbar-thumb,
+.notify-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.sidebar-box:hover::-webkit-scrollbar-thumb,
+.notify-list:hover::-webkit-scrollbar-thumb  {
+    background-color: #fdab92;
+}
+
+.sidebar-box .account {
+    border-radius: 8px;
+    background-color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.account .account-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--pri);
+    margin-right: 10px;
+}
+
+.account-infor .name {
+    color: var(--pri);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.account .role {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.sidebar-title {
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 20px 0;
+}
+
+.sidebar-group:last-child {
+    margin-bottom: 40px;
+}
+
+.sidebar-list .sidebar-item {
+    padding: 10px;
+    font-size: 20px;
+}
+
+.sidebar-list .sidebar-item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.sidebar-list .sidebar-item.active,
+.sidebar-list .sidebar-item:hover {
+    border-right: 2px solid var(--pri);
+}
+
+.sidebar-list .sidebar-item.active a,
+.sidebar-list .sidebar-item:hover a {
+    color: var(--pri);
+}
+
+.container {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 350px;
+    bottom: 0;
+    right: 0;
+    transition: all 0.3s linear;
+}
+
+.container.show-notify {
+    left: 0;
+    right: 350px;
+}
+
+.container.show-notify .main {
+    overflow-y: hidden;
+}
+
+.container .main {
+    flex-grow: 1;
+}
+
+.container .notification {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 350px;
+    transform: translateX(100%);
+    transition: all 0.3s linear;
+}
+
+.container .notification.show {
+    transform: translate(0);
+}
+
+.container .main .header {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 30px 25px 30px 25px;
+    background-color: var(--bg);
+}
+
+.main .header .title {
+    font-size: 24px;
+}
+
+.main .header .search-box {
+    flex-grow: 1;
+    padding: 0 30px;
+}
+
+.main .header .search-box input[name="search"] {
+    width: 100%;
+    padding: 15px;
+    outline: 0;
+    border: 0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.header .header-action > * {
+    display: inline-block;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.header .header-action li:hover {
+    color: var(--pri);
+}
+
+.header .header-action > *,
+.header .btn {
+    margin-left: 10px;
+}
+
+.header .btn {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    border-radius: 10px;
+    padding: 12px 16px;
+    background-color: var(--pri);
+}
+
+.header .btn:hover {
+    background-color: #eb5c30;
+}
+
+.notification .header {
+    display: flex;
+    height: 100px;
+    padding: 30px 25px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification .header .close {
+    font-size: 30px;
+    font-weight: 700;
+    transform: rotate(45deg);
+    transition: all 0.25s ease-in;
+    cursor: pointer;
+}
+
+.notification .header .close:hover {
+    transform: rotate(135deg);
+    color: var(--pri);
+}
+
+.notification .notify-list {
+    flex-grow: 1;
+    padding: 0 25px;
+    margin-right: 10px;
+    overflow-y: scroll;
+}
+
+.notify-list .notify-item a {
+    display: flex;
+    align-items: center;
+    padding: 18px 0;
+}
+
+.notify-item:hover .notify-title {
+    color: var(--pri);
+}
+
+.notify-item .notify-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eb5c30;
+}
+
+.notify-item .notify-content {
+    padding: 0 12px;
+}
+
+.notify-item .notify-content .notify-time {
+    font-size: 12px;
+}
+
+.notify-list .notify-item:not(:last-child) {
+    border-bottom: 1px solid var(--boder);
+}
+
+.notify-action {
+    margin: 30px 25px;
+}
+
+.notify-action .btn {
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.notify-action .btn:hover {
+    opacity: 0.7;
+}
+
+.btn.btn-success {
+    background-color: green;
+}
+
+.btn.btn-error {
+    background-color: red;
+}
+
+.main-content {
+    padding: 0 0 5px 25px;
+    background-color: var(--bg);
+}
+
+.report-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.report-list .report-item {
+    flex-grow: 1;
+    background-color: var(--pri);
+    border-radius: 12px;
+    height: 300px;
+}
+
+.report-list .report-item:not(:first-child),
+.report-list .report-item:not(:last-child) {
+    margin: 0 15px 15px 0;
+}
+
+
+.sales-chart,
+.channels {
+    width: 48%;
+}
+
+.sales,
+.orders,
+.review {
+    width: 300px;
+}
+
+.rating {
+    width: 280px;
+}
+
+
+
