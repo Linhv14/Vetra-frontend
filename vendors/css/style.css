@@ -17,15 +17,17 @@ ul li {
 
 :root {
     --bg: #f5f4fe;
+    --bg-disable: #eee;
+
     --primary: #ff6e40;
+    --dark-primary: #eb5c30;
+    --light-primary: rgba(255,110,64,.15);
 
     --success: #05b171;
     --warning: #faae42;
     --error: #ea4444;
 
     --border: #ced4da;
-    --bg-disable: #eee;
-    --bg-primary: rgba(255,110,64,.15);
 
     --purple: #9932e7;
     --blue: #25c2e3;
@@ -34,6 +36,8 @@ ul li {
     --light-gray: #6c757d;
 
     --icon-sidebar: 22px;
+    --sidebar-width: 350px;
+    --header-height: 100px;
 }
 
 body {
@@ -43,10 +47,8 @@ body {
 
 .sidebar {
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 350px;
+    inset: 0 auto 0 0;
+    width: var(--sidebar-width);
     background-color: var(--bg);
     padding: 0 0 30px 25px;
     transition: all 0.3s linear;
@@ -58,7 +60,7 @@ body {
 
 .sidebar .logo {
     width: 35%;
-    height: 100px;
+    height: var(--header-height);
     display: flex;
     align-items: center;
 }
@@ -82,7 +84,7 @@ body {
 
 .sidebar-box:hover::-webkit-scrollbar-thumb,
 .notify-list:hover::-webkit-scrollbar-thumb  {
-    background-color: var(--bg-primary);
+    background-color: var(--light-primary);
 }
 
 .sidebar-box .account {
@@ -126,7 +128,6 @@ body {
 
 .sidebar-item a {
     padding: 10px;
-    font-size: 16px;
     display: flex;
     align-items: center;
 }
@@ -185,7 +186,7 @@ body {
 
 .sidebar-list .sidebar-item.active > a,
 .sidebar-list .sidebar-item:hover > a {
-    background-color: var(--bg-primary);
+    background-color: var(--light-primary);
 }
 
 .sidebar-list .sidebar-item.active > a,
@@ -221,16 +222,13 @@ body {
 .container {
     display: flex;
     position: absolute;
-    top: 0;
-    left: 350px;
-    bottom: 0;
-    right: 0;
+    inset: 0 0 0 var(--sidebar-width);
     transition: all 0.3s linear;
 }
 
 .container.show-notify {
     left: 0;
-    right: 350px;
+    right: var(--sidebar-width);
 }
 
 .container.show-notify .main {
@@ -243,13 +241,11 @@ body {
 
 .container .notification {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 350px;
+    min-width: var(--sidebar-width);
     transform: translateX(100%);
     transition: all 0.3s linear;
 }
@@ -259,65 +255,55 @@ body {
 }
 
 .container .main .header {
-    height: 100px;
-    display: flex;
+    height: var(--header-height);
     align-items: center;
     padding: 30px 25px 30px 25px;
     background-color: var(--bg);
 }
 
 .main .header .title {
-    font-size: 24px;
+    font-weight: 500;
 }
 
 .main .header .search-box {
-    flex-grow: 1;
     padding: 0 30px;
 }
 
-.main .header .search-box input[name="search"] {
+.header .search-box input[name="search"] {
     width: 100%;
     padding: 15px;
     outline: 0;
     border: 0;
-    border-radius: 8px;
-    font-size: 16px;
 }
 
 .header .header-action > * {
     display: inline-block;
     padding: 0 10px;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .header .header-action li:hover {
     color: var(--primary);
 }
 
-.header .header-action > *,
 .header .btn {
+    text-align: center;
+    color: white;
+    padding: 12px 16px;
+    background-color: var(--primary);
     margin-left: 10px;
 }
 
-.header .btn {
-    text-align: center;
-    font-size: 16px;
-    color: white;
-    border-radius: 10px;
-    padding: 12px 16px;
-    background-color: var(--primary);
-}
-
 .header .btn:hover {
-    background-color: #eb5c30;
+    background-color: var(--dark-primary);
 }
 
 .notification .header {
-    display: flex;
-    height: 100px;
+    height: var(--header-height);
     padding: 30px 25px;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
 .notification .header .close {
@@ -376,7 +362,6 @@ body {
 .notify-action .btn {
     color: white;
     padding: 12px 16px;
-    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -413,7 +398,6 @@ body {
     margin: 0 15px 15px 0;
 }
 
-
 .sales-chart,
 .channels {
     width: 48%;
@@ -429,28 +413,3 @@ body {
     width: 280px;
 }
 
-/* Reset Image */
-
-.image {
-    width: 100%;
-}
-
-.circle {
-    border-radius: 50%;
-}
-
-.rounded {
-    border-radius: 8px;
-}
-
-/* Animation */
-
-@keyframes fadeDown {
-    from {
-        opacity: 0;
-        transform: translateY(-12px);
-    } to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}

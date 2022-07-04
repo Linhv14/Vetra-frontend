@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="vendors/css/style.css">
+    <link rel="stylesheet" href="vendors/css/mixin.css">
 </head>
 
 <body>
@@ -190,16 +190,16 @@
 
     <section class="container">
         <div class="main">
-            <nav class="header">
-                <h3 class="title">Dashboard</h3>
-                <div class="search-box">
-                    <input type="text" name="search" placeholder="Search">
+            <nav class="header flex">
+                <h3 class="title text-6">Dashboard</h3>
+                <div class="search-box grow">
+                    <input class="rounded text-4" type="text" name="search" placeholder="Search">
                 </div>
                 <ul class="header-action">
                     <li class="notify"><a href="#"></a>Notifications</li>
                     <li class="notify"><a href="#"></a>Carts</li>
                 </ul>
-                <a class="btn" href="#">Add Product</a>
+                <a class="btn rounded text-4" href="#">Add Product</a>
             </nav>
             <div class="main-content">
                 <ul class="report-list">
@@ -228,7 +228,7 @@
             </div>
         </div>
         <div class="notification">
-            <div class="header">
+            <div class="header flex">
                 <h2 class="title">Notifications</h2>
                 <span class="close">+</span>
             </div>
@@ -343,8 +343,8 @@
                 </li>
             </ul>
             <div class="notify-action">
-                <a class="btn btn-success" href="#">Make All Read</a>
-                <a class="btn btn-error" href="#">Delete All</a>
+                <a class="btn btn-success rounded" href="#">Make All Read</a>
+                <a class="btn btn-error rounded" href="#">Delete All</a>
             </div>
         </div>
     </section>
