@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --key: #ff6e40;
+    --key-hover: #cc5833;
+    --text: #212529;
+    --sub-text: #6c757d;
+    --border: #ccc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--key);
+    font-family: "Poppins", sans-serif;
+    color: #000;
+}
+
+body *::selection {
+    background-color: rgba(250, 174, 66, 0.5);
+}
+
+.container {
+    width: 880px;
+    height: 500px;
+    background-color: #FFF;
+    border-radius: 10px;
+    display: flex;
+    margin: 0 5%;
+}
+
+.container.login {
+    height: 500px;
+}
+
+.container.register {
+    height: 600px;
+}
+
+.container.reset-password,
+.container.lock-screen {
+    height: 400px;
+}
+
+.lock-screen .auth-side {
+    padding: 30px 50px;
+}
+
+.reset-password .auth-side {
+    justify-content: center;
+}
+
+.auth-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px;
+    border-right: 1px solid var(--border);
+}
+
+.auth-title h2 {
+    font-weight: 400;
+}
+
+.auth-title p {
+    font-size: 13px;
+    color: var(--sub-text);
+}
+
+.auth-form input {
+    display: block;
+    padding: 12px 20px;
+    margin: 15px 0;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: 1px solid var(--border);
+}
+
+.auth-form input:focus {
+    outline: 2px solid var(--key);
+}
+
+.auth-form>p {
+    font-size: 12px;
+}
+
+.auth-form a {
+    color: var(--key);
+}
+
+.auth-form a:hover {
+    color: var(--key-hover);
+}
+
+.auth-form button {
+    font-size: 12px;
+    padding: 12px 18px;
+    border-radius: 8px;
+    color: #FFF;
+    margin: 10px 10px 10px 0;
+    background-color: var(--key);
+    border: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.auth-form button:hover {
+    background-color: var(--key-hover);
+}
+
+.auth-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.auth-avatar img {
+    width: 100%;
+}
+
+.other-account {
+    font-size: 12px;
+    display: inline-block;
+    padding: 12px 0;
+    background-color: white;
+    border: 0;
+}
+
+.different-action {
+    font-size: 12px;
+}
+
+.different-action > a {
+    display: inline-block;
+    color: white;
+    font-size: 12px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    background-color: var(--key);
+}
+
+.different-action > a:hover {
+    background-color: var(--key-hover);
+}
+
+.sign-method a {
+    margin-top: 20px;
+    padding: 10px;
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.sign-method a:hover {
+    border: 1px solid var(--key);
+}
+
+.sign-method a i {
+    margin-right: 10px;
+}
+
+.sign-method .bi-google {
+    color: red;
+}
+
+.sign-method .bi-facebook {
+    color: blue;
+}
+
+.auth-side,
+.welcome-side {
+    width: 50%;
+}
+
+.redirect {
+    display: none;
+    font-size: 12px;
+    align-self: center;
+    margin-top: 20px;
+}
+
+.redirect a {
+    color: var(--key);
+}
+
+.redirect a:hover {
+    color: var(--key-hover);
+}
+
+.welcome-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+
+.logo {
+    width: 120px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.logo.mobile {
+    display: none;
+}
+
+.reset-password .welcome-side {
+    flex-basis: 420px;
+}
+
+.welcome-content {
+    text-align: center;
+}
+
+.welcome-content h3 {
+    font-size: 24px;
+}
+
+.welcome-content * {
+    margin: 10px 0;
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+.welcome-footer a {
+    font-size: 12px;
+    color: var(--key);
+}
+
+.welcome-footer a:hover {
+    color: var(--key-hover);
+}
+
+.welcome-footer a:not(:last-child) {
+    margin-right: 8px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 12px;
+    background-color: var(--key);
+    border-radius: 8px;
+    color: #FFF;
+    font-size: 14px;
+    user-select: none;
+}
+
+.btn:hover {
+    background-color: var(--key-hover);
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 500px;
+    }
+
+    .container.login {
+        height: 600px;
+    }
+
+    .container.register {
+        height: 650px;
+    }
+
+    .container.lock-screen {
+        height: 500px;
+    }
+
+    .reset-password .auth-side {
+        justify-content: space-between;
+    }
+
+
+    .lock-screen .auth-side .auth-avatar {
+        align-self: center;
+    }
+
+    .lock-screen .auth-side .auth-title p {
+        display: none;
+    }
+
+    .lock-screen form input {
+        margin: unset;
+    }
+
+    .auth-side {
+        padding: 25px 25px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        align-items: stretch;
+    }
+
+    .auth-form button {
+        display: inline-block;
+        margin-top: 25px
+    }
+
+    .welcome-side {
+        display: none;
+    }
+
+    .redirect {
+        display: block;
+    }
+
+    .logo.mobile {
+        display: block;
+        margin: 0 auto;
+    }
+
+}

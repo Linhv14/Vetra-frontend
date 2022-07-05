@@ -1,0 +1,62 @@
+
+/* Reset Image */
+
+.image {
+    width: 100%;
+}
+
+/* Rouded */
+
+.circle {
+    border-radius: 50%;
+}
+
+.rounded {
+    border-radius: 8px;
+}
+
+/* Text */ 
+
+.text-3 {
+    font-size: 12px;
+}
+
+.text-4 {
+    font-size: 16px;
+}
+
+.text-5 {
+    font-size: 20px;
+}
+
+.text-6 {
+    font-size: 24px;
+}
+
+/* Flex */
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex .grow {
+    flex-grow: 1;
+}
+
+/* Animation */
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    } to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
