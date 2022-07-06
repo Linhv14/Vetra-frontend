@@ -49,6 +49,23 @@
     flex-grow: 1;
 }
 
+.scrollable {
+    overflow-y: scroll;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.scrollable:hover::-webkit-scrollbar-thumb  {
+    background-color: var(--light-primary);
+}
+
 /* Animation */
 
 @keyframes fadeDown {
