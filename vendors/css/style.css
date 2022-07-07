@@ -147,7 +147,7 @@ body.hide-scroll {
 
 .sidebar-badge.text {
     font-size: 12px;
-    padding: 4px;
+    padding: 0 4px;
 }
 
 .sidebar-item:not(:last-child) {
