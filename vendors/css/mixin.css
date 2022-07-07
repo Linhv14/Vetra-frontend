@@ -1,3 +1,30 @@
+/* Hover */ 
+
+.hover:hover {
+    color: var(--primary);
+}
+
+.hover-opacity:hover {
+    opacity: 0.8;
+}
+
+/* Background */
+
+.bg {
+    background-color: var(--bg);
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.bg-success {
+    background-color: var(--success);
+}
+
+.bg-error {
+    background-color: var(--error);
+}
 
 /* Reset Image */
 
@@ -45,16 +72,28 @@
     justify-content: center;
 }
 
+.flex-vertical {
+    display: flex;
+    align-items: center;
+}
+
+.flex-horizon {
+    display: flex;
+    justify-content: center;
+}
+
 .flex .grow {
     flex-grow: 1;
 }
+
+/* Scroll */
 
 .scrollable {
     overflow-y: scroll;
 }
 
 .scrollable::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
 }
 
 .scrollable::-webkit-scrollbar-thumb {
@@ -75,5 +114,15 @@
     } to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeToRight {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    } to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }

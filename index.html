@@ -9,18 +9,24 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="vendors/css/style.css">
     <link rel="stylesheet" href="vendors/css/mixin.css">
+    <link rel="stylesheet" href="vendors/css/style.css">
+    <link rel="stylesheet" href="vendors/css/responsive.css">
 </head>
 
 <body>
 
-    <aside class="sidebar">
-        <a href="#" class="logo">
-            <img class="image" src="assets/logo.svg" alt="Vetra logo">
-        </a>
+    <aside class="sidebar bg">
+        <div class="logo-box flex-vertical">
+            <a href="#" class="logo flex-vertical">
+                <img class="image" src="assets/logo.svg" alt="Vetra logo">
+            </a>
+            <div class="close-sidebar">
+                <i class="bi bi-x text-6"></i>
+            </div>
+        </div>
         <div class="sidebar-box scrollable">
-            <div class="account rounded">
+            <div class="account rounded bg-white flex">
                 <div class="account-image circle">
                     <img class="image" src="assets/users/man_avatar2.jpg" alt="avatar">
                 </div>
@@ -37,64 +43,64 @@
                 <span class="sidebar-title">E-Commerce</span>
                 <ul class="sidebar-list">
                     <li class="sidebar-item active">
-                        <a href="#" class="rounded">
+                        <a href="#">
                             <i class="bi bi-bar-chart"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:" class="rounded">
+                        <a href="javascrip:">
                             <i class="bi bi-receipt"></i>
                             <span>Orders</span>
                             <i class="bi bi-arrow-right"></i>
                         </a>
                         <ul class="sidebar-dropdown">
-                            <li class="sidebar-dropdown-item rounded"><a href="#">List</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Detail</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">List</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Detail</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:" class="rounded">
+                        <a href="javascrip:">
                             <i class="bi bi-truck"></i>
                             <span>Products</span>
                             <i class="bi bi-arrow-right"></i>
                         </a>
                         <ul class="sidebar-dropdown">
-                            <li class="sidebar-dropdown-item rounded"><a href="#">List View</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Grid View</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Product Detail</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Shopping Cart</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Checkout</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">List View</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Grid View</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Product Detail</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Shopping Cart</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Checkout</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:" class="rounded">
+                        <a href="javascrip:">
                             <i class="bi bi-wallet"></i>
                             <span>Buyer</span>
                             <i class="bi bi-arrow-right"></i>
                         </a>
                         <ul class="sidebar-dropdown">
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Dashboard</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Orders</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Addresses</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Wishlist</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Dashboard</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Orders</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Addresses</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Wishlist</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="rounded">
+                        <a href="#">
                             <i class="bi bi-person-badge"></i>
                             <span>Customer</span>
                         </a>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:" class="rounded">
+                        <a href="javascrip:">
                             <i class="bi bi-receipt-cutoff"></i>
                             <span>Invoices</span>
                             <i class="bi bi-arrow-right"></i>
                         </a>
                         <ul class="sidebar-dropdown">
-                            <li class="sidebar-dropdown-item rounded"><a href="#">List</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Detail</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">List</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Detail</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -103,32 +109,32 @@
                 <span class="sidebar-title">Apps</span>
                 <ul class="sidebar-list">
                     <li class="sidebar-item">
-                        <a href="#" class="rounded">
+                        <a href="#">
                             <i class="bi bi-chat-square"></i>
                             <span>Chats</span>
-                            <span class="sidebar-badge count circle">99+</span>
+                            <span class="sidebar-badge flex-center bg-success count circle">99+</span>
                         </a>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:" class="rounded">
+                        <a href="javascrip:">
                             <i class="bi bi-envelope"></i>
                             <span>Email</span>
                             <i class="bi bi-arrow-right"></i>
                         </a>
                         <ul class="sidebar-dropdown">
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Inbox</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Detail</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Inbox</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Detail</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:" class="rounded">
+                        <a href="javascrip:">
                             <i class="bi bi-check-circle"></i>
                             <span>Todo App</span>
                             <i class="bi bi-arrow-right"></i>
                         </a>
                         <ul class="sidebar-dropdown">
-                            <li class="sidebar-dropdown-item rounded"><a href="#">List</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Detail</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">List</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Detail</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -137,48 +143,48 @@
                 <span class="sidebar-title">Pages</span>
                 <ul class="sidebar-list">
                     <li class="sidebar-item parent">
-                        <a href="javascrip:" class="rounded">
+                        <a href="javascrip:">
                             <i class="bi bi-person"></i>
                             <span>Profile</span>
                             <i class="bi bi-arrow-right"></i>
                         </a>
                         <ul class="sidebar-dropdown">
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Post</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Connections</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Post</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Connections</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:" class="rounded">
+                        <a href="javascrip:">
                             <i class="bi bi-person-circle"></i>
                             <span>Users</span>
                             <i class="bi bi-arrow-right"></i>
                         </a>
                         <ul class="sidebar-dropdown">
-                            <li class="sidebar-dropdown-item rounded"><a href="#">List View</a></li>
-                            <li class="sidebar-dropdown-item rounded"><a href="#">Grid View</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">List View</a></li>
+                            <li class="sidebar-dropdown-item"><a href="#">Grid View</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="rounded">
+                        <a href="#">
                             <i class="bi bi-gear"></i>
                             <span>Settings</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="rounded">
+                        <a href="#">
                             <i class="bi bi-postcard"></i>
                             <span>Pricing Table</span>
-                            <span class="sidebar-badge text rounded">New</span>
+                            <span class="sidebar-badge bg-success text rounded">New</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="rounded">
+                        <a href="#">
                             <i class="bi bi-search"></i>
                             <span>Search Page</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="rounded">
+                        <a href="#">
                             <i class="bi bi-question-circle"></i>
                             <span>FAQ</span>
                         </a>
@@ -188,41 +194,55 @@
         </div>
     </aside>
 
-    <section class="container">
+    <section class="container scrollable">
         <div class="main grow">
-            <nav class="header flex">
-                <h3 class="title text-6">Dashboard</h3>
-                <div class="search-box grow rounded">
-                    <label for="search"><i class="bi bi-search"></i></label>
-                    <input class="text-4" id="search" type="text" name="search" placeholder="Search">
+            <nav class="header flex bg">
+                <div class="menu-sidebar">
+                    <i class="bi bi-list"></i>
                 </div>
-                <ul class="header-action">
-                    <li class="notify"><a href="#"></a>Notifications</li>
-                    <li class="notify"><a href="#"></a>Carts</li>
+                <div class="title">
+                    <h2 class="text-6">Dashboard</h2>
+                </div>
+                <div class="search-box flex-vertical bg-white">
+                    <label for="search"><i class="bi bi-search"></i></label>
+                    <input class="text-4" id="search" type="text" name="search" placeholder="Search...">
+                </div>
+                <ul class="header-action flex-vertical">
+                    <li class="notify text-5">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-error circle flex-center">10</span>
+                    </li>
+                    <li class="cart text-5">
+                        <i class="bi bi-cart"></i>
+                        <!-- <span class="badge bg-error circle flex-center">99+</span> -->
+                    </li>
                 </ul>
-                <a class="btn rounded text-4" href="#">Add Product</a>
+                <a class="btn rounded text-4 flex-vertical" href="#">
+                    <i class="bi bi-plus-circle"></i>
+                    <span>Add Product</span>
+                </a>
             </nav>
-            <div class="main-content">
-                <ul class="report-list">
-                    <li class="report-item rounded sales-chart">
+            <div class="main-content bg">
+                <ul class="report-list flex">
+                    <li class="report-item sales-chart">
 
                     </li>
-                    <li class="report-item rounded channels">
+                    <li class="report-item channels">
 
                     </li>
-                    <li class="report-item rounded orders">
+                    <li class="report-item orders">
 
                     </li>
-                    <li class="report-item rounded sales">
+                    <li class="report-item sales">
 
                     </li>
-                    <li class="report-item rounded review">
+                    <li class="report-item review">
 
                     </li>
-                    <li class="report-item rounded rating">
+                    <li class="report-item rating">
 
                     </li>
-                    <li class="report-item rounded rating">
+                    <li class="report-item rating">
 
                     </li>
                 </ul>
@@ -345,11 +365,13 @@
                 </li>
             </ul>
             <div class="notify-action">
-                <a class="btn btn-success rounded" href="#">Make All Read</a>
-                <a class="btn btn-error rounded" href="#">Delete All</a>
+                <a class="btn btn-success" href="#">Make All Read</a>
+                <a class="btn btn-error" href="#">Delete All</a>
             </div>
         </div>
     </section>
+
+    <div class="overlay"></div>
 
     <script src="vendors/js/main.js"></script>
 </body>

@@ -35,6 +35,7 @@ ul li {
     --light: #ededed;
     --light-gray: #6c757d;
 
+    --padding: 24px;
     --icon-sidebar: 22px;
     --sidebar-width: 350px;
     --header-height: 100px;
@@ -45,16 +46,11 @@ body {
     overflow-x: hidden;
 }
 
-body.hide-scroll {
-    overflow-y: hidden;
-}
-
 .sidebar {
     position: fixed;
     inset: 0 auto 0 0;
     width: var(--sidebar-width);
-    background-color: var(--bg);
-    padding: 0 0 30px 25px;
+    padding: 0 0 30px var(--padding);
     transition: all 0.3s linear;
 }
 
@@ -62,23 +58,57 @@ body.hide-scroll {
     transform: translateX(-100%);
 }
 
+.sidebar.show {
+    z-index: 999;
+    background-color: #fff;
+    transform: translateX(0);
+}
+
+.sidebar.show .close-sidebar {
+    display: block;
+}
+
+.close-sidebar {
+    display: none;
+    padding: 6px;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.overlay {
+    opacity: 0;
+}
+
+.sidebar.show ~ .overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+}
+
+.sidebar.show .sidebar-box .account {
+    background-color: var(--bg);
+}
+
+.sidebar .logo-box {
+    padding-right: 15px;
+}
+
 .sidebar .logo {
     width: 35%;
     height: var(--header-height);
-    display: flex;
-    align-items: center;
 }
 
 .sidebar .sidebar-box {
     height: 100%;
-    padding: 0 5px 45px 0;
+    padding: 0 15px 45px 0;
+    margin-right: 4px;
 }
 
 .sidebar-box .account {
     padding: 15px;
-    display: flex;
     align-items: center;
-    background-color: #fff;
+    cursor: pointer;
 }
 
 .account .account-image {
@@ -118,6 +148,7 @@ body.hide-scroll {
     display: flex;
     align-items: center;
     line-height: 34px;
+    border-radius: 8px;
 }
 
 .sidebar-item .bi:first-child {
@@ -129,24 +160,17 @@ body.hide-scroll {
 }
 
 .sidebar-badge {
-    display: block;
     margin-left: auto;
+    font-size: 12px;
     color: #fff;
-    text-align: center;
-    background-color: var(--success);
 }
 
 .sidebar-badge.count {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 30px;
     height: 30px;
-    font-size: 12px;
 }
 
 .sidebar-badge.text {
-    font-size: 12px;
     padding: 0 4px;
 }
 
@@ -183,7 +207,11 @@ body.hide-scroll {
 .sidebar-item > a:hover .bi,
 .sidebar-item.active:not(.parent) > a,
 .sidebar-dropdown-item:hover a,
-.sidebar-dropdown-item.active a {
+.sidebar-dropdown-item.active a,
+.header .header-action li:hover,
+.main .header .menu-sidebar:hover,
+.notify-item:hover .notify-title,
+.close-sidebar:hover {
     color: var(--primary);
 }
 
@@ -197,6 +225,7 @@ body.hide-scroll {
 .sidebar-dropdown-item {
     padding-left: calc(var(--icon-sidebar) + 12px);
     margin-top: 10px;
+    border-radius: 8px;
 }
 
 .sidebar-dropdown-item a {
@@ -216,6 +245,10 @@ body.hide-scroll {
     position: absolute;
     inset: 0 0 0 var(--sidebar-width);
     transition: all 0.3s linear;
+}
+
+.container.hide-scroll {
+    overflow: hidden;
 }
 
 .container.show-notify {
@@ -245,51 +278,75 @@ body.hide-scroll {
 .container .main .header {
     height: var(--header-height);
     align-items: center;
-    padding: 30px 25px 30px 25px;
-    background-color: var(--bg);
+    padding: 0 var(--padding);
 }
 
-.main .header .title {
+.main .header .menu-sidebar {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.main .header .title h2 {
     font-weight: 500;
+    padding: 0 10px;
 }
 
 .main .header .search-box {
-    padding: 0 30px;
+    flex-grow: 1;
+    border-radius: 8px;
+    margin: 0 30px;
+    overflow: hidden;
+}
+
+.search-box label[for="search"] {
+    padding: 0 14px;
 }
 
 .header .search-box input[name="search"] {
     width: 100%;
-    padding: 15px;
+    padding: 14px 18px;
     outline: 0;
     border: 0;
 }
 
-.header .header-action > * {
+.header .header-action > li {
+    position: relative;
     display: inline-block;
     padding: 0 10px;
     cursor: pointer;
-    margin-left: 10px;
+    font-size: 24px;
 }
 
-.header .header-action li:hover {
-    color: var(--primary);
+.header .header-action > li .badge {
+    position: absolute;
+    top: -26%;
+    right: 0;
+    font-size: 10px;
+    color: #fff;
+    width: 24px;
+    height: 24px;
 }
 
 .header .btn {
-    text-align: center;
     color: white;
     padding: 12px 16px;
     background-color: var(--primary);
-    margin-left: 10px;
+    margin-left: 12px;
 }
 
 .header .btn:hover {
     background-color: var(--dark-primary);
 }
 
+.header .btn .bi-plus-circle {
+    padding-right: 8px;
+}
+
 .notification .header {
     height: var(--header-height);
-    padding: 30px 25px;
+    padding: 30px var( --padding);
     align-items: center;
     justify-content: space-between;
 }
@@ -309,7 +366,7 @@ body.hide-scroll {
 
 .notification .notify-list {
     flex-grow: 1;
-    padding: 0 25px;
+    padding: 0 var( --padding);
     margin-right: 10px;
     overflow-y: scroll;
 }
@@ -318,10 +375,6 @@ body.hide-scroll {
     display: flex;
     align-items: center;
     padding: 18px 0;
-}
-
-.notify-item:hover .notify-title {
-    color: var(--primary);
 }
 
 .notify-item .notify-image {
@@ -344,13 +397,14 @@ body.hide-scroll {
 }
 
 .notify-action {
-    margin: 30px 25px;
+    margin: 30px var(--padding);
 }
 
 .notify-action .btn {
     color: white;
     padding: 12px 16px;
     cursor: pointer;
+    border-radius: 8px;
 }
 
 .notify-action .btn:hover {
@@ -358,26 +412,25 @@ body.hide-scroll {
 }
 
 .btn.btn-success {
-    background-color: green;
+    background-color: var(--success);
 }
 
 .btn.btn-error {
-    background-color: red;
+    background-color: var(--error);
 }
 
 .main-content {
-    padding: 0 0 5px 25px;
-    background-color: var(--bg);
+    padding-left: 24px;
 }
 
 .report-list {
-    display: flex;
     flex-wrap: wrap;
 }
 
 .report-list .report-item {
     flex-grow: 1;
-    background-color: var(--primary);
+    border-radius: 8px;
+    background-color: var(--light-primary);
     height: 300px;
 }
 

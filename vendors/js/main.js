@@ -4,20 +4,20 @@ function showNotify() {
     const sidebar = document.querySelector(".sidebar");
     const container = document.querySelector(".container");
     const notification = document.querySelector(".notification");
-    const body = document.body;
 
     showBtn.addEventListener("click", () => {
         sidebar.classList.toggle("hidden");
         container.classList.toggle("show-notify");
+        container.classList.toggle("hide-scroll");
         notification.classList.toggle("show");
-        body.classList.toggle("hide-scroll");
+
     });
 
     closeBtn.addEventListener("click", () => {
         sidebar.classList.toggle("hidden");
         container.classList.toggle("show-notify");
+        container.classList.toggle("hide-scroll");
         notification.classList.toggle("show");
-        body.classList.toggle("hide-scroll");
     });
 
 };
@@ -64,5 +64,25 @@ function handleSidebar() {
     });
 };
 
+function showSidebar() {
+    const openSidebar = document.querySelector(".menu-sidebar");
+    const closeSidebar = document.querySelector(".close-sidebar");
+    const overlay = document.querySelector(".overlay");
+    const sidebar = document.querySelector(".sidebar");
+
+    openSidebar.addEventListener("click", () => {
+        sidebar.classList.toggle("show");
+    });
+
+    closeSidebar.addEventListener("click", () => {
+        sidebar.classList.toggle("show");
+    });
+
+    overlay.addEventListener("click", () => {
+        sidebar.classList.toggle("show");
+    })
+};
+
+showSidebar();
 showNotify();
 handleSidebar();
