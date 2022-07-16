@@ -5,6 +5,10 @@
         inset: 0 0 0 0;
     }
 
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
     .main .header .menu-sidebar {
         display: block;
     }
@@ -16,6 +20,10 @@
         inset: 0 0 0 0;
     }
 
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
     .main .header .menu-sidebar {
         display: block;
     }
@@ -25,6 +33,10 @@
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .container {
         inset: 0 0 0 0;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
     }
 
     .main .header .menu-sidebar {
@@ -39,7 +51,6 @@
     }
 
     .sidebar {
-        transition: all 0.3s linear;
         transform: translateX(-100%);
     }
 
@@ -50,5 +61,15 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+    .overlay {
+        display: none;
+    }
 
+    .sidebar {
+        background-color: var(--bg);
+    }
+
+    .sidebar.show .close-sidebar {
+        display: none;
+    }
 }

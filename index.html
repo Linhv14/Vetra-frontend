@@ -16,28 +16,50 @@
 
 <body>
 
-    <aside class="sidebar bg">
+    <aside class="sidebar">
         <div class="logo-box flex-vertical">
             <a href="#" class="logo flex-vertical">
                 <img class="image" src="assets/logo.svg" alt="Vetra logo">
             </a>
             <div class="close-sidebar">
-                <i class="bi bi-x text-6"></i>
+                <i class="bi bi-x"></i>
             </div>
         </div>
         <div class="sidebar-box scrollable">
-            <div class="account rounded bg-white flex">
+            <div class="account rounded bg-white flex-vertical">
                 <div class="account-image circle">
                     <img class="image" src="assets/users/man_avatar2.jpg" alt="avatar">
                 </div>
                 <div class="account-infor">
-                    <a href="#">
-                        <h4 class="name">Van Linh</h4>
-                    </a>
-                    <a href="#">
-                        <h6 class="role">Sales Manager</h6>
-                    </a>
+                    <h4 class="name">Van Linh</h4>
+                    <h6 class="role">Sales Manager</h6>
                 </div>
+                <ul class="account-action bg-white rounded">
+                    <li class="account-action-item">
+                        <a href="#">
+                            <i class="bi bi-person"></i>
+                            Profile
+                        </a>
+                    </li>
+                    <li class="account-action-item">
+                        <a href="#">
+                            <i class="bi bi-envelope"></i>
+                            Inbox
+                        </a>
+                    </li>
+                    <li class="account-action-item">
+                        <a href="#">
+                            <i class="bi bi-gear"></i>
+                            Setting
+                        </a>
+                    </li>
+                    <li class="account-action-item">
+                        <a href="#">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
             </div>
             <div class="sidebar-group">
                 <span class="sidebar-title">E-Commerce</span>
@@ -49,7 +71,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:">
+                        <a href="#">
                             <i class="bi bi-receipt"></i>
                             <span>Orders</span>
                             <i class="bi bi-arrow-right"></i>
@@ -60,7 +82,7 @@
                         </ul>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:">
+                        <a href="#">
                             <i class="bi bi-truck"></i>
                             <span>Products</span>
                             <i class="bi bi-arrow-right"></i>
@@ -74,7 +96,7 @@
                         </ul>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:">
+                        <a href="#">
                             <i class="bi bi-wallet"></i>
                             <span>Buyer</span>
                             <i class="bi bi-arrow-right"></i>
@@ -93,7 +115,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:">
+                        <a href="#">
                             <i class="bi bi-receipt-cutoff"></i>
                             <span>Invoices</span>
                             <i class="bi bi-arrow-right"></i>
@@ -116,7 +138,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:">
+                        <a href="#">
                             <i class="bi bi-envelope"></i>
                             <span>Email</span>
                             <i class="bi bi-arrow-right"></i>
@@ -127,7 +149,7 @@
                         </ul>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:">
+                        <a href="#">
                             <i class="bi bi-check-circle"></i>
                             <span>Todo App</span>
                             <i class="bi bi-arrow-right"></i>
@@ -143,7 +165,7 @@
                 <span class="sidebar-title">Pages</span>
                 <ul class="sidebar-list">
                     <li class="sidebar-item parent">
-                        <a href="javascrip:">
+                        <a href="#">
                             <i class="bi bi-person"></i>
                             <span>Profile</span>
                             <i class="bi bi-arrow-right"></i>
@@ -154,7 +176,7 @@
                         </ul>
                     </li>
                     <li class="sidebar-item parent">
-                        <a href="javascrip:">
+                        <a href="#">
                             <i class="bi bi-person-circle"></i>
                             <span>Users</span>
                             <i class="bi bi-arrow-right"></i>
@@ -195,34 +217,35 @@
     </aside>
 
     <section class="container scrollable">
-        <div class="main grow">
-            <nav class="header flex bg">
+        <div class="main">
+            <nav class="header">
                 <div class="menu-sidebar">
                     <i class="bi bi-list"></i>
                 </div>
                 <div class="title">
-                    <h2 class="text-6">Dashboard</h2>
+                    <h2>Dashboard</h2>
                 </div>
                 <div class="search-box flex-vertical bg-white">
-                    <label for="search"><i class="bi bi-search"></i></label>
-                    <input class="text-4" id="search" type="text" name="search" placeholder="Search...">
+                    <label for="search">
+                        <i class="bi bi-search"></i>
+                    </label>
+                    <input id="search" type="text" name="search" placeholder="Search...">
                 </div>
                 <ul class="header-action flex-vertical">
-                    <li class="notify text-5">
+                    <li class="notify">
                         <i class="bi bi-bell"></i>
                         <span class="badge bg-error circle flex-center">10</span>
                     </li>
-                    <li class="cart text-5">
+                    <li class="cart">
                         <i class="bi bi-cart"></i>
-                        <!-- <span class="badge bg-error circle flex-center">99+</span> -->
                     </li>
                 </ul>
-                <a class="btn rounded text-4 flex-vertical" href="#">
+                <a class="btn rounded flex-vertical" href="#">
                     <i class="bi bi-plus-circle"></i>
                     <span>Add Product</span>
                 </a>
             </nav>
-            <div class="main-content bg">
+            <div class="main-content">
                 <ul class="report-list flex">
                     <li class="report-item sales-chart">
 
@@ -247,10 +270,10 @@
                     </li>
                 </ul>
             </div>
-            
         </div>
+
         <div class="notification">
-            <div class="header flex">
+            <div class="header flex-vertical">
                 <h2 class="title">Notifications</h2>
                 <span class="close">+</span>
             </div>

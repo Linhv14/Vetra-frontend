@@ -27,8 +27,8 @@ function handleSidebar() {
     const sidebarChilds = document.querySelectorAll(".sidebar-dropdown-item");
     const sidebarDropdowns = document.querySelectorAll(".sidebar-item.parent");
 
-    function clearSidebar(list, activeSidebar, attribute = "active") {
-        list.forEach(sidebar => {
+    function clearSidebar(sidebars, activeSidebar, attribute = "active") {
+        sidebars.forEach(sidebar => {
             if (sidebar != activeSidebar) {
                 sidebar.classList.remove(attribute);
             };
@@ -42,7 +42,7 @@ function handleSidebar() {
             sidebar.classList.add("active");
         });
     });
-  
+
     sidebarChilds.forEach(sidebarChild => {
         sidebarChild.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -70,19 +70,36 @@ function showSidebar() {
     const overlay = document.querySelector(".overlay");
     const sidebar = document.querySelector(".sidebar");
 
-    openSidebar.addEventListener("click", () => {
-        sidebar.classList.toggle("show");
-    });
+    click([openSidebar, closeSidebar, overlay], sidebar);
+};
 
-    closeSidebar.addEventListener("click", () => {
-        sidebar.classList.toggle("show");
-    });
+function showAccountAction() {
+    const account = document.querySelector(".account");
+    const accountAction = document.querySelector(".account .account-action");
 
-    overlay.addEventListener("click", () => {
-        sidebar.classList.toggle("show");
+    handlePopup(account, accountAction, "show");
+
+};
+
+function handlePopup(exceptElement, closeElement, selector = "show", type = "toggle") {
+    document.addEventListener('click', (event) => {
+        if (exceptElement.contains(event.target)) {
+            closeElement.classList[type](selector);
+        } else {
+            closeElement.classList.remove(selector);
+        }
+    });
+};
+
+function click(clickElements, toggleElement, action = "show", type = "toggle") {
+    clickElements.forEach(element => {
+        element.addEventListener("click", () => {
+            toggleElement.classList[type](action);
+        });
     })
 };
 
 showSidebar();
 showNotify();
+showAccountAction();
 handleSidebar();
