@@ -500,6 +500,7 @@ body {
     margin-right: 8px;
 }
 
+
 .notification .header {
     height: var(--header-height);
     padding: 30px var(--padding);
