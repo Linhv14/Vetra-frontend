@@ -81,6 +81,14 @@ function showAccountAction() {
 
 };
 
+function showCart() {
+    const cartBtn = document.querySelector("li.cart");
+
+    cartBtn.addEventListener("click", () => {
+        cartBtn.classList.toggle("active");
+    });
+}
+
 function handlePopup(exceptElement, closeElement, selector = "show", type = "toggle") {
     document.addEventListener('click', (event) => {
         if (exceptElement.contains(event.target)) {
@@ -99,6 +107,7 @@ function click(clickElements, toggleElement, action = "show", type = "toggle") {
     })
 };
 
+showCart();
 showSidebar();
 showNotify();
 showAccountAction();

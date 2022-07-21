@@ -21,13 +21,14 @@ ul li {
 
     --primary: #ff6e40;
     --dark-primary: #eb5c30;
-    --light-primary: rgba(255,110,64,.15);
+    --light-primary: rgba(255, 110, 64, .15);
 
     --success: #05b171;
     --warning: #faae42;
     --error: #ea4444;
 
     --border: #ced4da;
+    --boder-light: #dee2e6;
 
     --purple: #9932e7;
     --blue: #25c2e3;
@@ -83,7 +84,7 @@ body {
     opacity: 0;
 }
 
-.sidebar.show ~ .overlay {
+.sidebar.show~.overlay {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.2);
@@ -237,19 +238,18 @@ body {
     transform: scale(1.15);
 }
 
-.sidebar-item:not(.parent).active > a,
-.sidebar-item > a:hover,
+.sidebar-item:not(.parent).active>a,
+.sidebar-item>a:hover,
 .sidebar-dropdown-item:hover,
 .sidebar-dropdown-item.active {
     background-color: var(--light-primary);
 }
 
-.sidebar-item > a:hover,
-.sidebar-item > a:hover .bi,
-.sidebar-item.active:not(.parent) > a,
+.sidebar-item>a:hover,
+.sidebar-item>a:hover .bi,
+.sidebar-item.active:not(.parent)>a,
 .sidebar-dropdown-item:hover a,
 .sidebar-dropdown-item.active a,
-.header .header-action li:hover,
 .main .header .menu-sidebar:hover,
 .notify-item:hover .notify-title,
 .close-sidebar:hover {
@@ -347,7 +347,7 @@ body {
     padding: 0 14px;
 }
 
-.header .search-box input[name="search"] {
+.header input[name="search"] {
     width: 100%;
     padding: 14px 18px;
     outline: 0;
@@ -355,7 +355,11 @@ body {
     font-size: 16px;
 }
 
-.header .header-action > li {
+.header .header-action {
+    position: relative;
+}
+
+.header .header-action>li:not(.cart-box) {
     position: relative;
     display: inline-block;
     margin: 0 20px;
@@ -363,7 +367,11 @@ body {
     font-size: 24px;
 }
 
-.header .header-action > li .badge {
+.header .header-action li:hover>.bi {
+    color: var(--primary);
+}
+
+.header .header-action>li .badge {
     position: absolute;
     top: -26%;
     right: -50%;
@@ -371,6 +379,109 @@ body {
     color: var(--white);
     width: 24px;
     height: 24px;
+}
+
+.header .cart-box {
+    position: absolute;
+    width: 340px;
+    top: 150%;
+    right: 0;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 1px -1px 20px -2px var(--light-gray);
+    display: none;
+    transition: all 0.25s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.header .cart.active~.cart-box {
+    display: block;
+    animation: dropDown 0.5s ease;
+}
+
+@keyframes dropDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-action .cart-title {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--boder-light);
+}
+
+.header-action .cart-total {
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    border-top: 1px solid var(--boder-light);
+}
+
+.cart-box .cart-total .total {
+    color: var(--primary);
+    font-weight: 600;
+    margin-left: 2px;
+}
+
+.cart-box #list-cart {
+    padding: 0 15px;
+}
+
+.cart-box .card-product {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.cart-box .product-image {
+    width: 65px;
+    align-self: stretch;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.cart-box .product-infor {
+    flex-grow: 1;
+    padding: 0 15px;
+}
+
+.cart-box .product-infor .name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cart-box .product-infor>span {
+    font-size: 14px;
+}
+
+.cart-box .product-action {
+    display: block;
+    color: var(--primary);
+    font-size: 20px;
+    transition: all 0.25s ease;
+}
+
+.cart-box .product-action:hover {
+    transform: scale(1.15);
+}
+
+
+.header-action .cart-box img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .header .btn {
@@ -389,10 +500,9 @@ body {
     margin-right: 8px;
 }
 
-
 .notification .header {
     height: var(--header-height);
-    padding: 30px var( --padding);
+    padding: 30px var(--padding);
     justify-content: space-between;
 }
 
@@ -411,7 +521,7 @@ body {
 
 .notification .notify-list {
     flex-grow: 1;
-    padding: 0 var( --padding);
+    padding: 0 var(--padding);
     margin-right: 10px;
     overflow-y: scroll;
 }
@@ -499,4 +609,3 @@ body {
 .rating {
     width: 280px;
 }
-
