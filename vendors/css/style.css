@@ -149,7 +149,7 @@ body {
     box-shadow: 1px -1px 20px -2px var(--light-gray);
 }
 
-.account .account-action.show {
+.account.show .account-action {
     display: block;
     opacity: 1;
     animation: fadeDown 0.25s ease;
@@ -396,7 +396,7 @@ body {
     -moz-user-select: none;
 }
 
-.header .cart.active~.cart-box {
+.header .cart.show~.cart-box {
     display: block;
     animation: dropDown 0.5s ease;
 }
