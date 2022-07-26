@@ -87,13 +87,11 @@ function showAccountAction() {
     });
 
     function outerClick(event) {
-        console.log("account popup");
         if (!account.contains(event.target)) {
             account.classList.remove("show");
             document.removeEventListener("click", outerClick);
         }
     }
-
 };
 
 
@@ -111,14 +109,11 @@ function showCart() {
     });
 
     function outerClick(event) {
-        console.log("cart popup");
         if (!cartBtn.contains(event.target)) {
             cartBtn.classList.remove("show");
             document.removeEventListener("click", outerClick);
         }
     }
-
-
 }
 
 function click(clickElements, toggleElement, action = "show", type = "toggle") {
