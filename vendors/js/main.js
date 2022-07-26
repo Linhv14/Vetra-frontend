@@ -87,7 +87,6 @@ function showAccountAction() {
     });
 
     function outerClick(event) {
-        console.log("account popup");
         if (!account.contains(event.target)) {
             account.classList.remove("show");
             document.removeEventListener("click", outerClick);
@@ -95,7 +94,6 @@ function showAccountAction() {
     }
 
 };
-
 
 function showCart() {
     const cartBtn = document.querySelector("li.cart");
@@ -111,7 +109,6 @@ function showCart() {
     });
 
     function outerClick(event) {
-        console.log("cart popup");
         if (!cartBtn.contains(event.target)) {
             cartBtn.classList.remove("show");
             document.removeEventListener("click", outerClick);
