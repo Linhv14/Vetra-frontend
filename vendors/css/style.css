@@ -435,6 +435,8 @@ body {
 
 .cart-box #list-cart {
     padding: 0 15px;
+    overflow-y: auto;
+    max-height: 300px;
 }
 
 .cart-box .card-product {
