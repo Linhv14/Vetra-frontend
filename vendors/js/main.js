@@ -75,29 +75,51 @@ function showSidebar() {
 
 function showAccountAction() {
     const account = document.querySelector(".account");
-    const accountAction = document.querySelector(".account .account-action");
 
-    handlePopup(account, accountAction, "show");
+    account.addEventListener("click", () => {
+        account.classList.toggle("show");
+
+        const accountAction = document.querySelector(".account.show");
+
+        if (accountAction) {
+            document.addEventListener('click', outerClick);
+        }
+    });
+
+    function outerClick(event) {
+        console.log("account popup");
+        if (!account.contains(event.target)) {
+            account.classList.remove("show");
+            document.removeEventListener("click", outerClick);
+        }
+    }
 
 };
+
 
 function showCart() {
     const cartBtn = document.querySelector("li.cart");
 
     cartBtn.addEventListener("click", () => {
-        cartBtn.classList.toggle("active");
-    });
-}
+        cartBtn.classList.toggle("show");
 
-function handlePopup(exceptElement, closeElement, selector = "show", type = "toggle") {
-    document.addEventListener('click', (event) => {
-        if (exceptElement.contains(event.target)) {
-            closeElement.classList[type](selector);
-        } else {
-            closeElement.classList.remove(selector);
+        const cartActive = document.querySelector("li.cart.show");
+
+        if (cartActive) {
+            document.addEventListener('click', outerClick);
         }
     });
-};
+
+    function outerClick(event) {
+        console.log("cart popup");
+        if (!cartBtn.contains(event.target)) {
+            cartBtn.classList.remove("show");
+            document.removeEventListener("click", outerClick);
+        }
+    }
+
+
+}
 
 function click(clickElements, toggleElement, action = "show", type = "toggle") {
     clickElements.forEach(element => {
@@ -107,8 +129,16 @@ function click(clickElements, toggleElement, action = "show", type = "toggle") {
     })
 };
 
+function countCartItem() {
+    const badgeCart = document.querySelector("#cart-badge-count");
+    const cartItem = document.querySelectorAll("#list-cart .card-product");
+
+    badgeCart.textContent = cartItem.length;
+}
+
 showCart();
 showSidebar();
 showNotify();
 showAccountAction();
 handleSidebar();
+countCartItem();
