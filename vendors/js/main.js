@@ -1,55 +1,48 @@
 function showNotification() {
-    const showBtn = document.querySelector(".header-action .notify");
-    const closeBtn = document.querySelector(".notification .header .close");
-    const sidebar = document.querySelector(".sidebar");
+    const vetra = document.querySelector(".vetra");
+    const showButton = document.querySelector(".header-action .notify");
+    const closeButton = document.querySelector(".notification .close");
 
-    showBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("hidden");
-    });
+    showButton.addEventListener("click", toggleNotification);
 
-    closeBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("hidden");
-    });
+    closeButton.addEventListener("click", toggleNotification);
+
+    function toggleNotification() {
+        vetra.classList.toggle("show-notification");
+    }
 
 };
 
-function sidebarDropdown() {
+function handleSidebar() {
     const sidebars = document.querySelectorAll(".sidebar-item:not(.parent)");
-    const sidebarChildren = document.querySelectorAll(".sidebar-dropdown-item");
+    const sidebarChilds = document.querySelectorAll(".sidebar-dropdown-item");
     const sidebarDropdowns = document.querySelectorAll(".sidebar-item.parent");
-
-    function clearSidebar(sidebars, activeSidebar, attribute = "active") {
-        sidebars.forEach(sidebar => {
-            if (sidebar != activeSidebar) {
-                sidebar.classList.remove(attribute);
-            };
-        });
-    };
 
     sidebars.forEach(sidebar => {
         sidebar.addEventListener("click", () => {
-        
-            let sidebarActive = document.querySelector(".sidebar-item.active");
-            let sidebarChildActive = document.querySelector(".sidebar-dropdown-item.active");
-            sidebarActive.classList.remove("active");
 
-            sidebarChildActive.classList.remove("active");
+            let currentActive = document.querySelector(".sidebar-list .active");
+            if (currentActive != sidebar) {
+                currentActive.classList.remove("active");
+            }
+
+            let currentDropdown = document.querySelector(".sidebar-item.parent.show");
+            if (currentDropdown) {
+                currentDropdown.classList.remove("show");
+            }
 
             sidebar.classList.add("active");
         });
     });
 
-    sidebarChildren.forEach(sidebarChild => {
+    sidebarChilds.forEach(sidebarChild => {
         sidebarChild.addEventListener("click", (e) => {
             e.stopPropagation();
 
-            // clearSidebar(sidebarChildren, sidebarChild);
-            // clearSidebar(sidebars);
-            let sidebarActive = document.querySelector(".sidebar-item.active");
-            let sidebarChildActive = document.querySelector(".sidebar-dropdown-item.active");
-            sidebarActive.classList.remove("active");
-
-            sidebarChildActive.classList.remove("active");
+            let currentActive = document.querySelector(".sidebar-list .active");
+            if (currentActive != sidebarChild) {
+                currentActive.classList.remove("active");
+            }
 
             sidebarChild.classList.add("active");
         });
@@ -57,9 +50,10 @@ function sidebarDropdown() {
 
     sidebarDropdowns.forEach(sidebarDropdown => {
         sidebarDropdown.addEventListener("click", () => {
-            let activeDropdown = document.querySelector(".sidebar-item.show");
-            if (activeDropdown && activeDropdown != sidebarDropdown) {
-                activeDropdown.classList.remove("show");
+
+            let currentDropdown = document.querySelector(".sidebar-item.parent.show");
+            if (currentDropdown && currentDropdown != sidebarDropdown) {
+                currentDropdown.classList.remove("show");
             }
 
             sidebarDropdown.classList.toggle("show");
@@ -73,7 +67,7 @@ function showSidebar() {
     const overlay = document.querySelector(".overlay");
     const sidebar = document.querySelector(".sidebar");
 
-    click([openSidebar, closeSidebar, overlay], sidebar);
+    multiClick([openSidebar, closeSidebar, overlay], sidebar);
 };
 
 function showAccountAction() {
@@ -121,10 +115,10 @@ function showCart() {
 
 }
 
-function click(clickElements, toggleElement, action = "show", type = "toggle") {
-    clickElements.forEach(element => {
+function multiClick(elements, target, action = "show", type = "toggle") {
+    elements.forEach(element => {
         element.addEventListener("click", () => {
-            toggleElement.classList[type](action);
+            target.classList[type](action);
         });
     })
 };
@@ -136,9 +130,25 @@ function countCartItem() {
     badgeCart.textContent = cartItem.length;
 }
 
+function showSetting() {
+    const app = document.querySelector(".vetra");
+    const showButton = document.querySelector(".account-action-item.setting");
+    const closeButton = document.querySelector("#setting .close");
+
+    showButton.addEventListener("click", toggleSetting)
+
+    closeButton.addEventListener("click", toggleSetting);
+
+    function toggleSetting() {
+        app.classList.toggle("show-setting");
+    }
+}
+
+showSetting()
 showCart();
 showSidebar();
 showNotification();
 showAccountAction();
-sidebarDropdown();
+
+handleSidebar();
 countCartItem();

@@ -51,19 +51,17 @@ ul li {
 body {
     font-family: "Poppins", sans-serif;
     overflow-x: hidden;
-}
-
-.sidebar {
-    position: fixed;
-    inset: 0 auto 0 0;
-    width: var(--sidebar-width);
-    padding: 0 0 30px var(--padding);
-    transition: all 0.3s linear;
     background-color: var(--bg);
 }
 
-.sidebar.hidden {
-    transform: translateX(-100%);
+.sidebar {
+    position: absolute;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100%;
+    padding: 0 0 30px var(--padding);
+    background-color: var(--bg);
+    transition: all 0.25s linear;
 }
 
 .sidebar.show {
@@ -85,15 +83,16 @@ body {
 }
 
 .overlay {
-    content: "";
     opacity: 0;
-}
-
-.sidebar.show~.overlay {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.2);
+    z-index: -999;
+}
+
+.sidebar.show~.overlay {
     opacity: 1;
+    z-index: 990;
 }
 
 .sidebar.show .sidebar-box .account {
@@ -142,22 +141,20 @@ body {
 }
 
 .account .account-action {
+    display: none;
     position: absolute;
     top: 80%;
     left: 80px;
     z-index: -999;
     width: 60%;
     padding: 10px 0;
-    opacity: 0;
-    overflow: hidden;
     transition: all 0.25s ease;
     box-shadow: 1px -1px 20px -2px var(--light-gray);
 }
 
 .account.show .account-action {
     display: block;
-    opacity: 1;
-    animation: fadeDown 0.25s ease;
+    animation: fadeDown 0.3s ease;
     z-index: 999;
 }
 
@@ -289,35 +286,27 @@ body {
 
 .container {
     position: absolute;
-    inset: 0 0 0 var(--sidebar-width);
+    inset: 0 var(--notification-width) 0 var(--sidebar-width);
     transition: all 0.3s linear;
+    overflow-y: scroll;
 }
 
-.sidebar.hidden ~ .container {
-    overflow: hidden;
+.vetra.show-notification .container,
+.vetra.show-setting .container {
+    overflow-y: visible;
 }
 
-.sidebar.hidden ~ .container {
-    left: calc(var(--sidebar-width) - var(--notification-width));
-    right: var(--notification-width);
-    /* transition: all 0.25s ease; */
-}
-
-.container .notification {
-    position: fixed;
-    inset: 0 0 0 auto;
+.notification {
+    position: absolute;
+    right: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: var(--sidebar-width);
-    transform: translateX(100%);
-    transition: all 0.3s linear;
-    background-color: var(--white);
-}
-
-.sidebar.hidden ~ .container .notification {
-    transform: translate(0);
     width: var(--notification-width);
+    height: 100%;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    z-index: -998;
 }
 
 .container .main .header {
@@ -402,19 +391,7 @@ body {
 
 .header .cart.show~.cart-box {
     display: block;
-    animation: dropDown 0.5s ease;
-}
-
-@keyframes dropDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    animation: fadeDown 0.5s ease;
 }
 
 .header-action .cart-title {
@@ -504,6 +481,35 @@ body {
     background-color: var(--dark-primary);
 }
 
+.container .footer-box {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    padding: 20px 15px 20px var(--padding);
+}
+
+.container .footer-box .author {
+    margin-right: auto;
+}
+
+.container .footer-box .author a {
+    color: var(--primary);
+}
+
+
+.container .footer-box .author a:hover {
+    color: var(--dark-error);
+}
+
+.container  .footer .footer-item {
+    transition: opacity 0.25s ease;
+    opacity: 0.7;
+}
+
+.container .footer-box .footer-item:hover {
+    opacity: 1;
+}
+
 .notification .header {
     height: var(--header-height);
     padding: 30px var(--padding);
@@ -534,7 +540,7 @@ body {
     overflow-y: scroll;
 }
 
-.notify-list .notify-item > a {
+.notify-list .notify-item>a {
     display: flex;
     align-items: center;
     padding: 18px 0;
@@ -574,7 +580,7 @@ body {
     transition: 0.25s;
 }
 
-.notify-action .btn > .bi {
+.notify-action .btn>.bi {
     margin-right: 8px;
 }
 
@@ -596,23 +602,19 @@ body {
 
 .content {
     background-color: var(--bg);
-    padding-left: var(--padding);
+    padding: 0 15px 0 var(--padding);
 }
 
 .report-list {
     flex-wrap: wrap;
+    gap: 15px;
 }
 
 .report-list .report-item {
     flex-grow: 1;
     border-radius: 8px;
     background-color: var(--light-primary);
-    height: 300px;
-}
-
-.report-list .report-item:not(:first-child),
-.report-list .report-item:not(:last-child) {
-    margin: 0 15px 15px 0;
+    height: 300px;;
 }
 
 .sales-chart,
@@ -623,9 +625,54 @@ body {
 .sales,
 .orders,
 .review {
-    width: 300px;
+    width: 33%;
 }
 
 .rating {
     width: 280px;
+}
+
+#test-setting {
+    padding: 15px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999999;
+    background-color: var(--primary);
+    cursor: pointer;
+}
+
+.vetra {
+    position: absolute;
+    width: calc(100% + var(--notification-width));
+    min-height: 100vh;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+
+.vetra.show-notification,
+.vetra.show-setting {
+    transform: translateX(calc(-1 * var(--notification-width)));
+}
+
+#setting {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: var(--notification-width);
+    height: 100%;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    z-index: -999;
+}
+
+.vetra.show-setting #setting {
+    z-index: 9999;
+}
+
+.vetra.show-setting .overlay {
+    opacity: 1;
+    z-index: 990;
 }

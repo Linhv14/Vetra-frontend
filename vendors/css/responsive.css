@@ -1,7 +1,16 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 1199px) {
+    .vetra {
+        width: 100%;
+    }
+
+    .vetra.show-notification,
+    .vetra.show-setting {
+        transform: unset;
+    }
+
     .container {
-        inset: 0 0 0 0;
+        inset: 0;
     }
 
     .sidebar {
@@ -12,11 +21,16 @@
         display: block;
     }
 
-    .container.show-notify {
-        inset: 0;
+    .vetra.show-notification .notification,
+    .vetra.show-setting #setting {
+        transform: translateX(0);
+        z-index: 999;
     }
 
-    .container .notification.show {
+    .notification,
+    #setting {
+        z-index: -999;
+        transform: translateX(100%);
         box-shadow: 0 0 30px var(--light-gray);
     }
 }
@@ -28,7 +42,11 @@
     }
 
     .sidebar {
-        background-color: var(--bg);
+        background-color: var(--bg) !important;
+    }
+
+    .sidebar.show .sidebar-box .account {
+        background-color: var(--white);
     }
 
     .sidebar.show .close-sidebar {
