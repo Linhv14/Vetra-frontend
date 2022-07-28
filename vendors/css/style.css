@@ -293,18 +293,14 @@ body {
     transition: all 0.3s linear;
 }
 
-.container.hide-scroll {
+.sidebar.hidden ~ .container {
     overflow: hidden;
 }
 
-.container.show-notify {
+.sidebar.hidden ~ .container {
     left: calc(var(--sidebar-width) - var(--notification-width));
     right: var(--notification-width);
     /* transition: all 0.25s ease; */
-}
-
-.container.show-notify .main {
-    overflow-y: hidden;
 }
 
 .container .notification {
@@ -319,7 +315,7 @@ body {
     background-color: var(--white);
 }
 
-.container .notification.show {
+.sidebar.hidden ~ .container .notification {
     transform: translate(0);
     width: var(--notification-width);
 }
