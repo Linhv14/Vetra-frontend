@@ -1,7 +1,7 @@
 function showNotification() {
     const vetra = document.querySelector(".vetra");
     const showButton = document.querySelector(".header-action .notify");
-    const closeButton = document.querySelector(".notification .close");
+    const closeButton = document.querySelector("#notification .header .close");
 
     showButton.addEventListener("click", toggleNotification);
 
@@ -133,7 +133,7 @@ function countCartItem() {
 function showSetting() {
     const app = document.querySelector(".vetra");
     const showButton = document.querySelector(".account-action-item.setting");
-    const closeButton = document.querySelector("#setting .close");
+    const closeButton = document.querySelector("#setting .header .close");
 
     showButton.addEventListener("click", toggleSetting)
 

@@ -21,15 +21,23 @@
         display: block;
     }
 
-    .vetra.show-notification .notification,
+    .vetra.show-notification #notification,
     .vetra.show-setting #setting {
         transform: translateX(0);
-        z-index: 999;
     }
 
-    .notification,
+    .vetra.show-notification .container,
+    .vetra.show-setting .container {
+        overflow-y: scroll;
+    }
+
+    .vetra.show-notification .overlay {
+        opacity: 1;
+        z-index: 990;
+    }
+
+    #notification,
     #setting {
-        z-index: -999;
         transform: translateX(100%);
         box-shadow: 0 0 30px var(--light-gray);
     }
