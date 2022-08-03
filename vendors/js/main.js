@@ -1,22 +1,36 @@
-function showNotify() {
-    const showBtn = document.querySelector(".header-action .notify");
-    const closeBtn = document.querySelector(".notification .header .close");
-    const sidebar = document.querySelector(".sidebar");
-    const container = document.querySelector(".container");
-    const notification = document.querySelector(".notification");
+function showNotification() {
+    const vetra = document.querySelector(".vetra");
+    const notification = document.querySelector("#notification");
 
-    showBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("hidden");
-        container.classList.toggle("show-notify");
-        container.classList.toggle("hide-scroll");
+    const showButton = document.querySelector(".header-action .notify");
+    const closeButton = document.querySelector("#notification .header .close");
+
+    showButton.addEventListener("click", () => {
+        vetra.classList.toggle("move");
         notification.classList.toggle("show");
 
+        vetra.addEventListener("mouseover", mouseoverEvent)
     });
 
-    closeBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("hidden");
-        container.classList.toggle("show-notify");
-        container.classList.toggle("hide-scroll");
+    function mouseoverEvent() {
+        const notificationAvtive = document.querySelector("#notification.show");
+        if (notificationAvtive) {
+            document.addEventListener("click", outerClick)
+        }
+    }
+
+    function outerClick(event) {
+        if (!notification.contains(event.target)) {
+            vetra.classList.remove("move");
+            notification.classList.remove("show");
+            
+            document.removeEventListener("click", outerClick);
+            vetra.removeEventListener("mouseover", mouseoverEvent);
+        }
+    }
+
+    closeButton.addEventListener("click", () => {
+        vetra.classList.toggle("move");
         notification.classList.toggle("show");
     });
 
@@ -27,18 +41,19 @@ function handleSidebar() {
     const sidebarChilds = document.querySelectorAll(".sidebar-dropdown-item");
     const sidebarDropdowns = document.querySelectorAll(".sidebar-item.parent");
 
-    function clearSidebar(sidebars, activeSidebar, attribute = "active") {
-        sidebars.forEach(sidebar => {
-            if (sidebar != activeSidebar) {
-                sidebar.classList.remove(attribute);
-            };
-        });
-    };
-
     sidebars.forEach(sidebar => {
         sidebar.addEventListener("click", () => {
-            clearSidebar(sidebars, sidebar);
-            clearSidebar(sidebarChilds);
+
+            let currentActive = document.querySelector(".sidebar-list .active");
+            if (currentActive != sidebar) {
+                currentActive.classList.remove("active");
+            }
+
+            let currentDropdown = document.querySelector(".sidebar-item.parent.show");
+            if (currentDropdown) {
+                currentDropdown.classList.remove("show");
+            }
+
             sidebar.classList.add("active");
         });
     });
@@ -46,19 +61,24 @@ function handleSidebar() {
     sidebarChilds.forEach(sidebarChild => {
         sidebarChild.addEventListener("click", (e) => {
             e.stopPropagation();
-            let parent = sidebarChild.parentElement.parentElement;
 
-            clearSidebar(sidebarChilds, sidebarChild);
-            clearSidebar(sidebars);
+            let currentActive = document.querySelector(".sidebar-list .active");
+            if (currentActive != sidebarChild) {
+                currentActive.classList.remove("active");
+            }
 
-            parent.classList.add("show");
             sidebarChild.classList.add("active");
         });
     });
 
     sidebarDropdowns.forEach(sidebarDropdown => {
         sidebarDropdown.addEventListener("click", () => {
-            clearSidebar(sidebarDropdowns, sidebarDropdown, "show")
+
+            let currentDropdown = document.querySelector(".sidebar-item.parent.show");
+            if (currentDropdown && currentDropdown != sidebarDropdown) {
+                currentDropdown.classList.remove("show");
+            }
+
             sidebarDropdown.classList.toggle("show");
         });
     });
@@ -67,10 +87,33 @@ function handleSidebar() {
 function showSidebar() {
     const openSidebar = document.querySelector(".menu-sidebar");
     const closeSidebar = document.querySelector(".close-sidebar");
-    const overlay = document.querySelector(".overlay");
     const sidebar = document.querySelector(".sidebar");
 
-    click([openSidebar, closeSidebar, overlay], sidebar);
+    openSidebar.addEventListener("click", () => {
+        sidebar.classList.toggle("show");
+
+        sidebar.addEventListener("mouseover", mouseoverEvent)
+    });
+
+    function mouseoverEvent() {
+        const sidebarActive = document.querySelector(".sidebar.show");
+        if (sidebarActive) {
+            document.addEventListener("click", outerClick);
+        }
+    }
+
+    function outerClick(event) {
+        if (!sidebar.contains(event.target)) {
+            sidebar.classList.remove("show");
+
+            document.removeEventListener("click", outerClick);
+            sidebar.addEventListener("mouseover", mouseoverEvent);
+        }
+    }
+
+    closeSidebar.addEventListener("click", () => {
+        sidebar.classList.toggle("show");
+    });
 };
 
 function showAccountAction() {
@@ -116,13 +159,51 @@ function showCart() {
     }
 }
 
-function click(clickElements, toggleElement, action = "show", type = "toggle") {
-    clickElements.forEach(element => {
-        element.addEventListener("click", () => {
-            toggleElement.classList[type](action);
-        });
-    })
-};
+function showSetting() {
+    const vetra = document.querySelector(".vetra");
+    const setting = document.querySelector("#setting");
+
+    const showButton = document.querySelector(".account-action-item.setting");
+    const closeButton = document.querySelector("#setting .header .close");
+
+    showButton.addEventListener("click", () => {
+        // Close sidebar when open setting
+        const sidebar = document.querySelector(".sidebar.show");
+
+        if (sidebar) {
+            sidebar.classList.remove("show");
+        }
+
+        vetra.classList.toggle("move");
+        setting.classList.toggle("show");
+
+        vetra.addEventListener("mouseover", mouseoverEvent)
+    });
+
+    function mouseoverEvent() {
+        const settingActive = document.querySelector("#setting.show");
+
+        if (settingActive) {
+            document.addEventListener("click", outerClick)
+        }
+    }
+
+    function outerClick(event) {
+        if (!setting.contains(event.target)) {
+            vetra.classList.remove("move");
+            setting.classList.remove("show");
+
+            document.removeEventListener("click", outerClick);
+            vetra.removeEventListener("mouseover", mouseoverEvent);
+        }
+    }
+
+    closeButton.addEventListener("click", () => {
+        vetra.classList.toggle("move");
+        setting.classList.toggle("show");
+    });
+
+}
 
 function countCartItem() {
     const badgeCart = document.querySelector("#cart-badge-count");
@@ -131,9 +212,12 @@ function countCartItem() {
     badgeCart.textContent = cartItem.length;
 }
 
+
+showSetting()
 showCart();
 showSidebar();
-showNotify();
+showNotification();
 showAccountAction();
+
 handleSidebar();
 countCartItem();
