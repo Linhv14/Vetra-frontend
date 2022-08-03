@@ -1,7 +1,15 @@
-/* Large devices (laptops/desktops, 992px and up) */
+/* Medium devices (ipad, lower 1199px) */
 @media only screen and (max-width: 1199px) {
+    .vetra {
+        width: 100%;
+    }
+
+    .vetra.move {
+        transform: unset;
+    }
+
     .container {
-        inset: 0 0 0 0;
+        inset: 0;
     }
 
     .sidebar {
@@ -12,26 +20,48 @@
         display: block;
     }
 
-    .container.show-notify {
-        inset: 0;
+    #notification.show,
+    #setting.show {
+        transform: translateX(0);
     }
 
-    .container .notification.show {
+    .vetra.move .container {
+        overflow-y: scroll;
+    }
+
+    #notification.show ~ .overlay {
+        opacity: 1;
+        z-index: 990;
+    }
+
+    #notification,
+    #setting {
+        transform: translateX(100%);
         box-shadow: 0 0 30px var(--light-gray);
     }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* Large devices (laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    .overlay {
-        display: none;
+    #notification.show ~ .overlay {
+        opacity: 0;
+        z-index: -999;
     }
 
     .sidebar {
-        background-color: var(--bg);
+        background-color: var(--bg) !important;
+    }
+
+    .sidebar.show .sidebar-box .account {
+        background-color: var(--white);
     }
 
     .sidebar.show .close-sidebar {
         display: none;
+    }
+
+    .sidebar.show ~ .overlay {
+        opacity: 0;
+        z-index: -999;
     }
 }
