@@ -1,11 +1,10 @@
-/* Large devices (laptops/desktops, 992px and up) */
+/* Medium devices (ipad, lower 1199px) */
 @media only screen and (max-width: 1199px) {
     .vetra {
         width: 100%;
     }
 
-    .vetra.show-notification,
-    .vetra.show-setting {
+    .vetra.move {
         transform: unset;
     }
 
@@ -21,17 +20,16 @@
         display: block;
     }
 
-    .vetra.show-notification #notification,
-    .vetra.show-setting #setting {
+    #notification.show,
+    #setting.show {
         transform: translateX(0);
     }
 
-    .vetra.show-notification .container,
-    .vetra.show-setting .container {
+    .vetra.move .container {
         overflow-y: scroll;
     }
 
-    .vetra.show-notification .overlay {
+    #notification.show ~ .overlay {
         opacity: 1;
         z-index: 990;
     }
@@ -43,10 +41,11 @@
     }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* Large devices (laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    .overlay {
-        display: none;
+    #notification.show ~ .overlay {
+        opacity: 0;
+        z-index: -999;
     }
 
     .sidebar {
@@ -59,5 +58,10 @@
 
     .sidebar.show .close-sidebar {
         display: none;
+    }
+
+    .sidebar.show ~ .overlay {
+        opacity: 0;
+        z-index: -999;
     }
 }

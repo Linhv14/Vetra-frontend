@@ -299,24 +299,22 @@ body {
     transition: all 0.35s ease;
 }
 
-.vetra.show-notification,
-.vetra.show-setting {
+.vetra.move {
     transform: translateX(calc(-1 * var(--notification-width)));
 }
 
-.vetra.show-notification #notification,
-.vetra.show-setting #setting {
+.vetra #notification.show,
+.vetra #setting.show {
     opacity: 1;
     z-index: 999;
 }
 
-.vetra.show-setting .overlay {
+.vetra.move .overlay {
     opacity: 1;
     z-index: 990;
 }
 
-.vetra.show-notification .container,
-.vetra.show-setting .container {
+.vetra.move .container {
     overflow-y: visible;
 }
 
@@ -572,6 +570,7 @@ body {
     transition: all 0.25s ease-in;
     cursor: pointer;
 }
+
 #setting .close:hover,
 #notification .close:hover {
     transform: translateX(4px);
