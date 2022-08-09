@@ -1,41 +1,3 @@
-function showNotification() {
-    const vetra = document.querySelector(".vetra");
-    const notification = document.querySelector("#notification");
-
-    const showButton = document.querySelector(".header-action .notify");
-    const closeButton = document.querySelector("#notification .header .close");
-
-    showButton.addEventListener("click", () => {
-        vetra.classList.toggle("move");
-        notification.classList.toggle("show");
-
-        vetra.addEventListener("mouseover", mouseoverEvent)
-    });
-
-    function mouseoverEvent() {
-        const notificationAvtive = document.querySelector("#notification.show");
-        if (notificationAvtive) {
-            document.addEventListener("click", outerClick)
-        }
-    }
-
-    function outerClick(event) {
-        if (!notification.contains(event.target)) {
-            vetra.classList.remove("move");
-            notification.classList.remove("show");
-            
-            document.removeEventListener("click", outerClick);
-            vetra.removeEventListener("mouseover", mouseoverEvent);
-        }
-    }
-
-    closeButton.addEventListener("click", () => {
-        vetra.classList.toggle("move");
-        notification.classList.toggle("show");
-    });
-
-};
-
 function handleSidebar() {
     const sidebars = document.querySelectorAll(".sidebar-item:not(.parent)");
     const sidebarChilds = document.querySelectorAll(".sidebar-dropdown-item");
@@ -116,28 +78,6 @@ function showSidebar() {
     });
 };
 
-function showAccountAction() {
-    const account = document.querySelector(".account");
-
-    account.addEventListener("click", () => {
-        account.classList.toggle("show");
-
-        const accountAction = document.querySelector(".account.show");
-
-        if (accountAction) {
-            document.addEventListener('click', outerClick);
-        }
-    });
-
-    function outerClick(event) {
-        if (!account.contains(event.target)) {
-            account.classList.remove("show");
-            document.removeEventListener("click", outerClick);
-        }
-    }
-
-};
-
 function showCart() {
     const cartBtn = document.querySelector("li.cart");
 
@@ -160,12 +100,50 @@ function showCart() {
 
 }
 
+function showNotification() {
+    const vetra = document.querySelector(".vetra");
+    const notification = document.querySelector("#notification");
+
+    const showButton = document.querySelector(".header-action .notify");
+    const closeButton = document.querySelector("#notification .close");
+
+    showButton.addEventListener("click", () => {
+        vetra.classList.toggle("move");
+        notification.classList.toggle("show");
+
+        vetra.addEventListener("mouseover", mouseoverEvent);
+    });
+
+    function mouseoverEvent() {
+        const notificationAvtive = document.querySelector("#notification.show");
+        if (notificationAvtive) {
+            document.addEventListener("click", outerClick);
+        }
+    }
+
+    function outerClick(event) {
+        if (!notification.contains(event.target)) {
+            vetra.classList.remove("move");
+            notification.classList.remove("show");
+            
+            document.removeEventListener("click", outerClick);
+            vetra.removeEventListener("mouseover", mouseoverEvent);
+        }
+    }
+
+    closeButton.addEventListener("click", () => {
+        vetra.classList.remove("move");
+        notification.classList.remove("show");
+    });
+
+};
+
 function showSetting() {
     const vetra = document.querySelector(".vetra");
     const setting = document.querySelector("#setting");
 
     const showButton = document.querySelector(".account-action-item.setting");
-    const closeButton = document.querySelector("#setting .header .close");
+    const closeButton = document.querySelector("#setting .close");
 
     showButton.addEventListener("click", () => {
         // Close sidebar when open setting
@@ -178,14 +156,14 @@ function showSetting() {
         vetra.classList.toggle("move");
         setting.classList.toggle("show");
 
-        vetra.addEventListener("mouseover", mouseoverEvent)
+        vetra.addEventListener("mouseover", mouseoverEvent);
     });
 
     function mouseoverEvent() {
         const settingActive = document.querySelector("#setting.show");
 
         if (settingActive) {
-            document.addEventListener("click", outerClick)
+            document.addEventListener("click", outerClick);
         }
     }
 
@@ -200,8 +178,8 @@ function showSetting() {
     }
 
     closeButton.addEventListener("click", () => {
-        vetra.classList.toggle("move");
-        setting.classList.toggle("show");
+        vetra.classList.remove("move");
+        setting.classList.remove("show");
     });
 
 }
@@ -218,7 +196,6 @@ showSetting()
 showCart();
 showSidebar();
 showNotification();
-showAccountAction();
 
 handleSidebar();
 countCartItem();

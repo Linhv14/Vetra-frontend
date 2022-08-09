@@ -115,9 +115,14 @@ body {
 }
 
 .sidebar-box .account {
+    width: 100%;
     padding: 15px;
     cursor: pointer;
     position: relative;
+    outline: 0;
+    border: 0;
+    text-align: left;
+    font-family: "Poppins", sans-serif;
 }
 
 .account .account-image {
@@ -137,25 +142,23 @@ body {
 .account .role {
     color: var(--light-gray);
     font-size: 12px;
-    font-weight: 400;
 }
 
 .account .account-action {
+    text-align: left;
     display: none;
     position: absolute;
     top: 80%;
     left: 80px;
-    z-index: -999;
     width: 60%;
     padding: 10px 0;
     transition: all 0.25s ease;
     box-shadow: 1px -1px 20px -2px var(--light-gray);
 }
 
-.account.show .account-action {
+.account:focus-within .account-action {
     display: block;
     animation: fadeDown 0.3s ease;
-    z-index: 999;
 }
 
 .account-action .account-action-item a {

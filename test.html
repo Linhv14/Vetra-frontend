@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+
+        body {
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .menu-open {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 60px;
+            color: #2596be;
+            transition: all 0.25s;
+        }
+
+        .menu-panel {
+            color: #333;
+            opacity: 0;
+            transition: all 0.25s;
+        }
+
+        .menu-panel {
+            visibility: hidden;
+        }
+
+        .menu:focus-within .menu-panel {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="menu">
+        <button class="menu-open-group">
+            <span class="menu-open">Khoá học</span>
+            <div class="menu-panel">
+                <div class="panel-item">HTML, CSS, JavaScript</div>
+                <div class="panel-item">ReactJS, Redux</div>
+                <div class="panel-item">NodeJS, Express</div>
+            </div>
+        </button>
+    </div>
+</body>
+
+</html>
