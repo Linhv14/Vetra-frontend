@@ -1,3 +1,4 @@
+
 function showNotification() {
     const vetra = document.querySelector(".vetra");
     const notification = document.querySelector("#notification");
@@ -111,6 +112,7 @@ function showSidebar() {
     });
 };
 
+
 function showAccountAction() {
     const account = document.querySelector(".account");
 
@@ -131,6 +133,7 @@ function showAccountAction() {
         }
     }
 };
+
 
 
 function showCart() {
@@ -159,7 +162,7 @@ function showSetting() {
     const setting = document.querySelector("#setting");
 
     const showButton = document.querySelector(".account-action-item.setting");
-    const closeButton = document.querySelector("#setting .header .close");
+    const closeButton = document.querySelector("#setting .close");
 
     showButton.addEventListener("click", () => {
         // Close sidebar when open setting
@@ -172,14 +175,14 @@ function showSetting() {
         vetra.classList.toggle("move");
         setting.classList.toggle("show");
 
-        vetra.addEventListener("mouseover", mouseoverEvent)
+        vetra.addEventListener("mouseover", mouseoverEvent);
     });
 
     function mouseoverEvent() {
         const settingActive = document.querySelector("#setting.show");
 
         if (settingActive) {
-            document.addEventListener("click", outerClick)
+            document.addEventListener("click", outerClick);
         }
     }
 
@@ -207,7 +210,6 @@ showSetting()
 showCart();
 showSidebar();
 showNotification();
-showAccountAction();
 
 handleSidebar();
 countCartItem();
