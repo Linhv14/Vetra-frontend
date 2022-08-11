@@ -9,7 +9,7 @@ function showNotification() {
         vetra.classList.toggle("move");
         notification.classList.toggle("show");
 
-        vetra.addEventListener("mouseover", mouseoverEvent)
+        vetra.addEventListener("mouseover", mouseoverEvent);
     });
 
     function mouseoverEvent() {
@@ -20,7 +20,7 @@ function showNotification() {
     }
 
     function outerClick(event) {
-        if (!notification.contains(event.target)) {
+        if (!notification.contains(event.target) || closeButton.contains(event.target)) {
             vetra.classList.remove("move");
             notification.classList.remove("show");
             
@@ -28,11 +28,6 @@ function showNotification() {
             vetra.removeEventListener("mouseover", mouseoverEvent);
         }
     }
-
-    closeButton.addEventListener("click", () => {
-        vetra.classList.toggle("move");
-        notification.classList.toggle("show");
-    });
 
 };
 
@@ -189,7 +184,7 @@ function showSetting() {
     }
 
     function outerClick(event) {
-        if (!setting.contains(event.target)) {
+        if (!setting.contains(event.target) || closeButton.contains(event.target)) {
             vetra.classList.remove("move");
             setting.classList.remove("show");
 
@@ -197,11 +192,6 @@ function showSetting() {
             vetra.removeEventListener("mouseover", mouseoverEvent);
         }
     }
-
-    closeButton.addEventListener("click", () => {
-        vetra.classList.toggle("move");
-        setting.classList.toggle("show");
-    });
 
 }
 
