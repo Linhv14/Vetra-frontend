@@ -1,3 +1,38 @@
+
+function showNotification() {
+    const vetra = document.querySelector(".vetra");
+    const notification = document.querySelector("#notification");
+
+    const showButton = document.querySelector(".header-action .notify");
+    const closeButton = document.querySelector("#notification .header .close");
+
+    showButton.addEventListener("click", () => {
+        vetra.classList.toggle("move");
+        notification.classList.toggle("show");
+
+        vetra.addEventListener("mouseover", mouseoverEvent);
+    });
+
+    function mouseoverEvent() {
+        const notificationAvtive = document.querySelector("#notification.show");
+        if (notificationAvtive) {
+            document.addEventListener("click", outerClick)
+        }
+    }
+
+    function outerClick(event) {
+        if (!notification.contains(event.target) || closeButton.contains(event.target)) {
+            vetra.classList.remove("move");
+            notification.classList.remove("show");
+            
+            document.removeEventListener("click", outerClick);
+            vetra.removeEventListener("mouseover", mouseoverEvent);
+        }
+    }
+
+};
+
+
 function handleSidebar() {
     const sidebars = document.querySelectorAll(".sidebar-item:not(.parent)");
     const sidebarChilds = document.querySelectorAll(".sidebar-dropdown-item");
@@ -78,6 +113,30 @@ function showSidebar() {
     });
 };
 
+
+function showAccountAction() {
+    const account = document.querySelector(".account");
+
+    account.addEventListener("click", () => {
+        account.classList.toggle("show");
+
+        const accountAction = document.querySelector(".account.show");
+
+        if (accountAction) {
+            document.addEventListener('click', outerClick);
+        }
+    });
+
+    function outerClick(event) {
+        if (!account.contains(event.target)) {
+            account.classList.remove("show");
+            document.removeEventListener("click", outerClick);
+        }
+    }
+};
+
+
+
 function showCart() {
     const cartBtn = document.querySelector("li.cart");
 
@@ -97,7 +156,6 @@ function showCart() {
             document.removeEventListener("click", outerClick);
         }
     }
-
 }
 
 function showNotification() {
@@ -168,7 +226,7 @@ function showSetting() {
     }
 
     function outerClick(event) {
-        if (!setting.contains(event.target)) {
+        if (!setting.contains(event.target) || closeButton.contains(event.target)) {
             vetra.classList.remove("move");
             setting.classList.remove("show");
 
@@ -181,6 +239,7 @@ function showSetting() {
         vetra.classList.remove("move");
         setting.classList.remove("show");
     });
+
 
 }
 

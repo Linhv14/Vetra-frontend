@@ -574,6 +574,12 @@ body {
     cursor: pointer;
 }
 
+#setting .close .bi,
+#notification .close .bi {
+    height: 100%;
+    display: block;
+}
+
 #setting .close:hover,
 #notification .close:hover {
     transform: translateX(4px);
