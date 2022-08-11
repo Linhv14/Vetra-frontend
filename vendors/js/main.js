@@ -32,7 +32,6 @@ function showNotification() {
 
 };
 
-
 function handleSidebar() {
     const sidebars = document.querySelectorAll(".sidebar-item:not(.parent)");
     const sidebarChilds = document.querySelectorAll(".sidebar-dropdown-item");
@@ -158,44 +157,6 @@ function showCart() {
     }
 }
 
-function showNotification() {
-    const vetra = document.querySelector(".vetra");
-    const notification = document.querySelector("#notification");
-
-    const showButton = document.querySelector(".header-action .notify");
-    const closeButton = document.querySelector("#notification .close");
-
-    showButton.addEventListener("click", () => {
-        vetra.classList.toggle("move");
-        notification.classList.toggle("show");
-
-        vetra.addEventListener("mouseover", mouseoverEvent);
-    });
-
-    function mouseoverEvent() {
-        const notificationAvtive = document.querySelector("#notification.show");
-        if (notificationAvtive) {
-            document.addEventListener("click", outerClick);
-        }
-    }
-
-    function outerClick(event) {
-        if (!notification.contains(event.target)) {
-            vetra.classList.remove("move");
-            notification.classList.remove("show");
-            
-            document.removeEventListener("click", outerClick);
-            vetra.removeEventListener("mouseover", mouseoverEvent);
-        }
-    }
-
-    closeButton.addEventListener("click", () => {
-        vetra.classList.remove("move");
-        notification.classList.remove("show");
-    });
-
-};
-
 function showSetting() {
     const vetra = document.querySelector(".vetra");
     const setting = document.querySelector("#setting");
@@ -234,12 +195,6 @@ function showSetting() {
             vetra.removeEventListener("mouseover", mouseoverEvent);
         }
     }
-
-    closeButton.addEventListener("click", () => {
-        vetra.classList.remove("move");
-        setting.classList.remove("show");
-    });
-
 
 }
 
