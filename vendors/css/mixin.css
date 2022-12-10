@@ -68,6 +68,18 @@
     flex-grow: 1;
 }
 
+.column {
+    flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.pointer > * {
+    cursor: pointer;
+}
+
 /* Scroll */
 
 .scrollable {

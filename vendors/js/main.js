@@ -24,6 +24,7 @@ function showNotification() {
         if (!notification.contains(event.target) || closeButton.contains(event.target)) {
             vetra.classList.remove("move");
             notification.classList.remove("show");
+            console.log("remove notification-action listener");
             
             document.removeEventListener("click", outerClick);
             vetra.removeEventListener("mouseover", mouseoverEvent);
@@ -129,6 +130,7 @@ function showAccountAction() {
     function outerClick(event) {
         if (!account.contains(event.target)) {
             account.classList.remove("show");
+            console.log("remove account-action listener");
             document.removeEventListener("click", outerClick);
         }
     }
@@ -152,6 +154,7 @@ function showCart() {
     function outerClick(event) {
         if (!cartBtn.contains(event.target)) {
             cartBtn.classList.remove("show");
+            console.log("remove cart-action listener");
             document.removeEventListener("click", outerClick);
         }
     }
@@ -190,6 +193,7 @@ function showSetting() {
         if (!setting.contains(event.target) || closeButton.contains(event.target)) {
             vetra.classList.remove("move");
             setting.classList.remove("show");
+            console.log("remove setting-action listener");
 
             document.removeEventListener("click", outerClick);
             vetra.removeEventListener("mouseover", mouseoverEvent);
@@ -205,11 +209,40 @@ function countCartItem() {
     badgeCart.textContent = cartItem.length;
 }
 
+function tabNotificationAction() {
+    const tabs = document.querySelectorAll("#notification .notify-control-item");
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            clearActiveTab();
+            tab.classList.toggle("active");
+            clearActivePanel();
+            activePanel(tab.dataset.target);
+
+        });
+    })
+
+    function clearActiveTab() {
+        const activeTab = document.querySelector("#notification .notify-control-item.active")
+        activeTab.classList.remove("active");
+    }
+
+    function clearActivePanel() {
+        const activePanel = document.querySelector(".tab-panel.active");
+        activePanel.classList.remove("active")
+    }
+
+    function activePanel(panel) {
+        const activePanel = document.querySelector("#" + panel)
+        activePanel.classList.add("active")
+    }
+}
+
 
 showSetting()
 showCart();
 showSidebar();
 showNotification();
-
+showAccountAction();
 handleSidebar();
 countCartItem();
+tabNotificationAction()

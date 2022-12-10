@@ -156,7 +156,7 @@ body {
     box-shadow: 1px -1px 20px -2px var(--light-gray);
 }
 
-.account:focus-within .account-action {
+.account.show .account-action {
     display: block;
     animation: fadeDown 0.3s ease;
 }
@@ -527,9 +527,7 @@ body {
 #setting {
     position: absolute;
     right: 0;
-    display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: var(--notification-width);
     height: 100%;
     background-color: var(--white);
@@ -586,11 +584,60 @@ body {
     color: var(--primary);
 }
 
-#notification .notify-list {
-    flex-grow: 1;
+#notification .notify-wrapper .tab-panel-wrapper {
+    position: relative;
+}
+
+#notification .notify-wrapper .tab-panel-wrapper > .tab-panel {
+    position: absolute;
+    inset: 0;
+    display: none;
+}
+
+#notification .notify-wrapper .tab-panel-wrapper > .tab-panel.active {
+    display: flex;
+}
+
+#notification .notify-wrapper .notify-content-wrapper {
+    height: 200px;
+}
+
+#notification .notify-control {
+    border-bottom: 1px solid var(--light-border);
     padding: 0 var(--padding);
-    margin-right: 10px;
-    overflow-y: scroll;
+}
+
+#notification .notify-control-item {
+    width: calc(100%/3);
+    text-align: center;
+    padding: 18px 16px;
+    position: relative;
+}
+
+#notification .notify-control-item.active {
+    background-color: var(--light-primary);
+    border-radius: 10px 10px 0 0;
+    color: var(--primary);
+}
+
+#notification .notify-control-item.badge::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--warning);
+    left: 14px;
+    top: 16px;
+}
+
+#notification .notify-list {
+    padding: 0 var(--padding);
+    height: 100%;
+}
+
+.notify-list .notify-item:not(:first-child) {
+    border-top: 1px solid var(--light-border);
 }
 
 .notify-list .notify-item>a {
@@ -600,14 +647,27 @@ body {
 }
 
 .notify-item .notify-image {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background-color: #eb5c30;
+    flex-shrink: 0;
+    color: var(--bg);
+    font-size: 18px;
+}
+
+.notify-item .notify-image.info {
+    background-color: var(--blue);
 }
 
 .notify-item .notify-content {
     padding: 0 12px;
+}
+
+.notify-item .notify-content .time {
+    font-size: 12px;
+    gap: 8px;
+    font-weight: 200;
 }
 
 .notify-item .notify-time {
@@ -621,8 +681,11 @@ body {
 #setting .action,
 #notification .action {
     display: flex;
-    gap: 20px;
+    column-gap: 20px;
+    row-gap: 12px;
     margin: 20px var(--padding);
+    flex-wrap: wrap;
+    transition: all 0.25s ease;
 }
 
 #setting .action .btn,
@@ -651,6 +714,14 @@ body {
 
 .btn.btn-success:hover {
     background-color: var(--dark-success);
+}
+
+.btn.btn-warning {
+    background-color: var(--primary);
+}
+
+.btn.btn-warning:hover {
+    background-color: var(--dark-primary);
 }
 
 .btn.btn-error {

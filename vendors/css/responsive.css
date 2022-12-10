@@ -1,3 +1,11 @@
+/* Small device (Mobile) */
+@media only screen and (max-width: 480px) {
+    #notification.show,
+    #setting.show {
+        width: 100%;
+    }
+}
+
 /* Medium devices (ipad, lower 1199px) */
 @media only screen and (max-width: 1199px) {
     .vetra {
