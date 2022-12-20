@@ -84,9 +84,14 @@
 
 .scrollable {
     overflow-y: scroll;
+    /* overflow-x: hidden; */
 }
 
 .scrollable::-webkit-scrollbar {
+    width: 0px;
+}
+
+.scrollable:hover::-webkit-scrollbar {
     width: 6px;
 }
 
@@ -96,7 +101,7 @@
 }
 
 .scrollable:hover::-webkit-scrollbar-thumb  {
-    background-color: var(--light-primary);
+    background-color: var(--normal-primary);
 }
 
 /* Animation */
@@ -118,5 +123,16 @@
     } to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes floatFromRight {
+    0% {
+        transform: translateX(50px);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
     }
 }
