@@ -85,9 +85,8 @@ function showSidebar() {
     const openSidebar = document.querySelector(".menu-sidebar");
     const closeSidebar = document.querySelector(".close-sidebar");
     const sidebar = document.querySelector(".sidebar");
-
     openSidebar.addEventListener("click", () => {
-        sidebar.classList.add("show");
+        sidebar.classList.toggle("show");
         console.log("open sidebar");
         sidebar.addEventListener("mouseover", mouseoverEvent)
     });
@@ -119,23 +118,25 @@ function showSidebar() {
 
 function showAccountAction() {
     const account = document.querySelector(".account");
-
+    let isOpen = false
     account.addEventListener("click", () => {
-
-        const accountAction = document.querySelector(".account.show");
-
-        if (accountAction) {
-            document.addEventListener('click', outerClick);
-        }
         account.classList.toggle("show");
-        console.log("open account-box");
+        isOpen = !isOpen
+        const accountAction = document.querySelector(".account.show");
+        if (accountAction && isOpen) {
+            console.log("open account-box");
+            document.addEventListener('click', outerClick);
+        } else {
+            document.removeEventListener("click", outerClick);
+        }
     });
 
     function outerClick(event) {
         if (!account.contains(event.target)) {
             account.classList.remove("show");
             document.removeEventListener("click", outerClick);
-            console.log("remove account-action listener");
+            isOpen = false
+            console.log("remove account-action listener"); 
         }
     }
 };
