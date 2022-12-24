@@ -91,6 +91,10 @@
     width: 0px;
 }
 
+.scrollable.scroll-visible::-webkit-scrollbar {
+    width: 6px;
+}
+
 .scrollable:hover::-webkit-scrollbar {
     width: 6px;
 }

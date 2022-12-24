@@ -25,7 +25,7 @@
                     <i class="bi bi-x"></i>
                 </div>
             </div>
-            <div class="sidebar-box scrollable">
+            <div class="sidebar-box scrollable scroll-visible">
                 <div class="account rounded bg-white flex-vertical">
                     <div class="account-image circle">
                         <img class="image" src="assets/users/man_avatar2.jpg" alt="avatar">
@@ -134,7 +134,7 @@
                             <a href="#">
                                 <i class="bi bi-chat-square"></i>
                                 <span>Chats</span>
-                                <span class="sidebar-badge flex-center bg-success count circle">99+</span>
+                                <span class="sidebar-badge flex-center bg-success count circle">5</span>
                             </a>
                         </li>
                         <li class="sidebar-item parent">
@@ -232,23 +232,29 @@
                         <input id="search" type="text" name="search" placeholder="Search...">
                     </div>
                     <ul class="header-action flex-vertical">
-                        <li class="notify">
+                        <li class="search-mobile action-btn">
+                            <i class="bi bi-search"></i>
+                        </li>
+                        <li id="mobile-action" class="action-btn">
+                            <i class="bi bi-three-dots"></i>
+                        </li>
+                        <li class="notify action-btn">
                             <i class="bi bi-bell"></i>
                             <span id="notification-badge-count" class="badge bg-error circle flex-center">10</span>
                         </li>
-                        <li class="cart">
+                        <li class="cart action-btn">
                             <i class="bi bi-cart"></i>
                             <span id="cart-badge-count" class="badge bg-error circle flex-center">4</span>
                         </li>
                         <li class="cart-box">
                             <div class="cart-title">Shopping Cart</div>
-                            <ul id="list-cart" class="scrollable">
+                            <ul id="list-cart" class="scrollable scroll-visible">
                                 <li class="card-product">
                                     <a href="#" class="product-image">
                                         <img src="./assets/products/3.jpg" alt="product-image">
                                     </a>
                                     <div class="product-infor">
-                                        <h6 class="name">Digital clock</h6>
+                                        <a href="#" class="name hover">Digital clock</a>
                                         <span class="quantity">1</span>
                                         <span>x</span>
                                         <span class="price">$125.58</span>
@@ -262,7 +268,7 @@
                                         <img src="./assets/products/4.jpg" alt="product-image">
                                     </a>
                                     <div class="product-infor">
-                                        <h6 class="name">Toy car</h6>
+                                        <a href="#" class="name hover">Toy car</a>
                                         <span class="quantity">1</span>
                                         <span>x</span>
                                         <span class="price">$15.80</span>
@@ -276,7 +282,7 @@
                                         <img src="./assets/products/6.jpg" alt="product-image">
                                     </a>
                                     <div class="product-infor">
-                                        <h6 class="name">Cake</h6>
+                                        <a href="#" class="name hover">Cake</a>
                                         <span class="quantity">3</span>
                                         <span>x</span>
                                         <span class="price">$4.125</span>
@@ -290,7 +296,7 @@
                                         <img src="./assets/products/7.jpg" alt="product-image">
                                     </a>
                                     <div class="product-infor">
-                                        <h6 class="name">Drinks</h6>
+                                        <a href="#" class="name hover">Drinks</a>
                                         <span class="quantity">2</span>
                                         <span>x</span>
                                         <span class="price">$14.52</span>
@@ -304,7 +310,7 @@
                                         <img src="./assets/products/10.jpg" alt="product-image">
                                     </a>
                                     <div class="product-infor">
-                                        <h6 class="name">Donut</h6>
+                                        <a href="#" class="name hover">Donut</a>
                                         <span class="quantity">2</span>
                                         <span>x</span>
                                         <span class="price">$10.02</span>
@@ -320,7 +326,7 @@
                             </div>
                         </li>
                     </ul>
-                    <a class="btn rounded flex-center" href="#">
+                    <a class="add-product-btn btn rounded flex-center" href="#">
                         <i class="bi bi-plus-circle"></i>
                         <span>Add Product</span>
                     </a>
@@ -385,7 +391,7 @@
                 <div class="tab-panel-wrapper grow">
                     <div id="activities" class="tab-panel notify-tab-content flex column active">
                         <div class="notify-content-wrapper grow">
-                            <ul class="active notify-list scrollable show-scroll">
+                            <ul class="active notify-list scrollable scroll-visible">
                                 <li class="notify-item new">
                                     <a href="#">
                                         <div class="notify-image flex-center info">
@@ -529,7 +535,7 @@
                     </div>
                     <div id="notes" class="tab-panel notify-tab-content flex column">
                         <div class="notify-content-wrapper grow">
-                            <ul class=" active notify-list scrollable">
+                            <ul class="active notify-list scrollable scroll-visible">
                                 <li class="notify-item bold success">
                                     <div class="note-box">
                                         <div class="notify-content">
@@ -592,7 +598,7 @@
                     </div>
                     <div id="alerts" class="tab-panel notify-tab-content flex column">
                         <div class="notify-content-wrapper grow">
-                            <ul class=" active notify-list scrollable">
+                            <ul class="active notify-list scrollable scroll-visible">
                                 <li class="notify-item new">
                                     <a href="#">
                                         <div class="notify-image flex-center warning">

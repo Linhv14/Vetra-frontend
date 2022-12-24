@@ -87,8 +87,8 @@ function showSidebar() {
     const sidebar = document.querySelector(".sidebar");
 
     openSidebar.addEventListener("click", () => {
-        sidebar.classList.toggle("show");
-
+        sidebar.classList.add("show");
+        console.log("open sidebar");
         sidebar.addEventListener("mouseover", mouseoverEvent)
     });
 
@@ -102,14 +102,17 @@ function showSidebar() {
     function outerClick(event) {
         if (!sidebar.contains(event.target)) {
             sidebar.classList.remove("show");
-
             document.removeEventListener("click", outerClick);
-            sidebar.addEventListener("mouseover", mouseoverEvent);
+            sidebar.removeEventListener("mouseover", mouseoverEvent);
+            console.log("remove sidebar-action listener");
         }
     }
 
     closeSidebar.addEventListener("click", () => {
-        sidebar.classList.toggle("show");
+        sidebar.classList.remove("show");
+        document.removeEventListener("click", outerClick);
+        sidebar.removeEventListener("mouseover", mouseoverEvent);
+        console.log("remove sidebar-action listener");
     });
 };
 
@@ -118,20 +121,21 @@ function showAccountAction() {
     const account = document.querySelector(".account");
 
     account.addEventListener("click", () => {
-        account.classList.toggle("show");
 
         const accountAction = document.querySelector(".account.show");
 
         if (accountAction) {
             document.addEventListener('click', outerClick);
         }
+        account.classList.toggle("show");
+        console.log("open account-box");
     });
 
     function outerClick(event) {
         if (!account.contains(event.target)) {
             account.classList.remove("show");
-            console.log("remove account-action listener");
             document.removeEventListener("click", outerClick);
+            console.log("remove account-action listener");
         }
     }
 };
