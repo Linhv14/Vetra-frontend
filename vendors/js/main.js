@@ -58,13 +58,6 @@ function Vetra() {
             vetra.addEventListener("click", singleOuterClick);
 
         });
-
-        // Close Sidebar and clear Sidebar's listener when open Setting
-        openSetting.addEventListener("click", () => {
-            sidebar.classList.remove("show");
-            vetra.removeEventListener("click", singleOuterClick);
-            console.log("Sidebar: remove listener");
-        })
     };
 
     function showAccountAction() {
@@ -100,9 +93,9 @@ function Vetra() {
 
             if (states.cart) {
                 console.log("Cart: Open cart-box");
-                document.addEventListener('click', outerClick);
+                vetra.addEventListener('click', outerClick);
             } else {
-                document.removeEventListener("click", outerClick);
+                vetra.removeEventListener("click", outerClick);
                 console.log("Cart: remove listener");
             }
         });
@@ -110,7 +103,7 @@ function Vetra() {
         function outerClick(event) {
             if (!cartBox.contains(event.target) && !cartBtn.contains(event.target)) {
                 cartBtn.classList.remove("show");
-                document.removeEventListener("click", outerClick);
+                vetra.removeEventListener("click", outerClick);
                 states.cart = false
                 console.log("Cart: remove listener");
             }
@@ -119,27 +112,33 @@ function Vetra() {
 
     function showSetting() {
         const setting = $("#setting");
+        const sidebar = $(".sidebar");
 
-        const openBtn = $(".account-action-item.setting");
-        const closeBtn = $("#setting .close");
+        const openSetting = $(".account-action-item.setting");
+        const closeSetting = $("#setting .close");
 
-        openBtn.addEventListener("click", () => {
+        openSetting.addEventListener("click", () => {
+            // Close Sidebar and clear Sidebar's listener when open Setting
+            sidebar.classList.remove("show");
+            vetra.removeEventListener("click", singleOuterClick);
+            console.log("Sidebar: remove listener");
+           
+            // Open Setting
             vetra.classList.toggle("move");
             setting.classList.toggle("show");
             console.log("Setting: Open setting");
 
-            document.addEventListener("click", outerClick);
-        });
-
-        function outerClick(event) {
-            if ((!setting.contains(event.target) || closeBtn.contains(event.target)) && !openBtn.contains(event.target)) {
-                vetra.classList.remove("move");
-                setting.classList.remove("show");
-                document.removeEventListener("click", outerClick);
-                console.log("Setting: Remove listener");
+            vetra.params = {
+                main: setting,
+                open: openSetting,
+                close: closeSetting,
+                isMove: true,
+                attr: "show",
+                text: "Setting"
             }
-        }
 
+            vetra.addEventListener("click", singleOuterClick);
+        });
     }
 
     function handleSidebar() {
@@ -235,7 +234,6 @@ function Vetra() {
             vetra.removeEventListener("click", singleOuterClick);
             console.log(`${data.text}: Remove listener`);
         }
-
     }
 
     function test() {
