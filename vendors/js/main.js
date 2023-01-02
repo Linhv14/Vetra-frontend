@@ -15,25 +15,25 @@ function Vetra() {
     function showNotification() {
         const notification = $("#notification");
 
-        const openBtn = $(".header-action .notify");
+        const openBtns = $$(".notify");
         const closeBtn = $("#notification .header .close");
+        openBtns.forEach(openBtn => {
+            openBtn.addEventListener("click", () => {
+                vetra.classList.toggle("move");
+                clearState(notification)
 
-        openBtn.addEventListener("click", () => {
-            vetra.classList.toggle("move");
-            notification.classList.toggle("show");
-            console.log("Notification: Open notification");
+                notification.classList.add("show");
 
-            vetra.params = {
-                main: notification,
-                open: openBtn,
-                close: closeBtn,
-                isMove: true,
-                attr: "show",
-                text: "Notification"
-            }
-            vetra.addEventListener("click", singleOuterClick);
-            
-        });
+                vetra.params = {
+                    main: notification,
+                    open: openBtn,
+                    close: closeBtn,
+                    isMove: true,
+                }
+                vetra.addEventListener("click", singleOuterClick);
+
+            });
+        })
     };
 
     function showSidebar() {
@@ -41,19 +41,14 @@ function Vetra() {
 
         const openSidebar = $(".menu-sidebar");
         const closeSidebar = $(".close-sidebar");
-        const openSetting = $(".account-action-item.setting");
 
         openSidebar.addEventListener("click", () => {
-            sidebar.classList.toggle("show");
-            console.log("Sidebar: Open sidebar");
-
+            toggleElement(sidebar, true);
             vetra.params = {
                 main: sidebar,
                 open: openSidebar,
                 close: closeSidebar,
                 isMove: false,
-                attr: "show",
-                text: "Sidebar"
             }
             vetra.addEventListener("click", singleOuterClick);
 
@@ -66,11 +61,9 @@ function Vetra() {
             account.classList.toggle("show");
             states.account = !states.account
             if (states.account) {
-                console.log("Account: Open account-box");
                 vetra.addEventListener('click', outerClick);
             } else {
                 vetra.removeEventListener("click", outerClick);
-                console.log("Account: Remove listener");
             }
         });
 
@@ -79,33 +72,40 @@ function Vetra() {
                 account.classList.remove("show");
                 vetra.removeEventListener("click", outerClick);
                 states.account = false
-                console.log("Account: Remove listener");
             }
         }
     };
 
     function showCart() {
         const cartBtn = $("li.cart");
+        const cartMobileBtn = $(".header-mobile li.cart");
         const cartBox = $(".cart-box");
+
         cartBtn.addEventListener("click", () => {
-            cartBtn.classList.toggle("show");
+            fn();
+        });
+
+        cartMobileBtn.addEventListener("click", () => {
+            fn();
+        });
+
+        function fn() {
+            cartBox.classList.toggle("show");
             states.cart = !states.cart
 
             if (states.cart) {
-                console.log("Cart: Open cart-box");
+                console.log("show");
                 vetra.addEventListener('click', outerClick);
             } else {
                 vetra.removeEventListener("click", outerClick);
-                console.log("Cart: remove listener");
             }
-        });
+        }
 
         function outerClick(event) {
-            if (!cartBox.contains(event.target) && !cartBtn.contains(event.target)) {
-                cartBtn.classList.remove("show");
+            if (!cartBox.contains(event.target) && !cartBtn.contains(event.target) && !cartMobileBtn.contains(event.target)) {
+                cartBox.classList.remove("show");
                 vetra.removeEventListener("click", outerClick);
                 states.cart = false
-                console.log("Cart: remove listener");
             }
         }
     }
@@ -122,10 +122,10 @@ function Vetra() {
             sidebar.classList.remove("show");
             vetra.removeEventListener("click", singleOuterClick);
             console.log("Sidebar: remove listener");
-           
+
             // Open Setting
             vetra.classList.toggle("move");
-            setting.classList.toggle("show");
+            setting.classList.add("show");
             console.log("Setting: Open setting");
 
             vetra.params = {
@@ -139,6 +139,32 @@ function Vetra() {
 
             vetra.addEventListener("click", singleOuterClick);
         });
+    }
+
+    function showMobileNavbar() {
+        const btn = $("#mobile-action");
+        const navbar = $(".main .header-mobile");
+
+        btn.addEventListener("click", () => {
+            toggleElement(navbar, true);
+            vetra.addEventListener("click", outerClick);
+        });
+
+        function outerClick(event) {
+            if ((!navbar.contains(event.target) && !btn.contains(event.target))) {
+                toggleElement(navbar, false);
+                vetra.removeEventListener("click", outerClick);
+            }
+        }
+    }
+
+    function toggleElement(element, isOpen) {
+        if (isOpen) {
+            element.classList.replace("reverse", "show");
+        } else {
+            element.classList.replace("show", "reverse");
+        }
+
     }
 
     function handleSidebar() {
@@ -229,31 +255,64 @@ function Vetra() {
 
         if ((!data.main.contains(e.target) || data.close.contains(e.target)) && !data.open.contains(e.target)) {
             if (data.isMove) vetra.classList.remove("move");
-            data.main.classList.remove(data.attr);
+            toggleElement(data.main, false);
 
             vetra.removeEventListener("click", singleOuterClick);
-            console.log(`${data.text}: Remove listener`);
         }
     }
 
-    function test() {
-        
+    function resizeWindow() {
+        window.addEventListener("resize", () => {
+            responsiveSidebar();
+            responsiveNavbar();
+        });
+
+        function responsiveNavbar() {
+            if (window.innerWidth > 640) {
+                const navbar = $(".header-mobile.show");
+                if (navbar) {
+                    navbar.classList.replace("show", "reverse");
+                }
+            }
+        }
+
+        // Remove "show" state when transfer from mobile to desktop
+        function responsiveSidebar() {
+            if (window.innerWidth > 1199) {
+                const sidebar = $(".sidebar.show")
+                if (sidebar) {
+                    sidebar.classList.replace("show", "reverse");
+                }
+            }
+        }
     }
 
-    function launch() {
+    function clearState(exceptElement) {
+        const elements = $$(".show");
+        elements.forEach(element => {
+            if (element != exceptElement) {
+                toggleElement(element, false)
+            }
+        });
+    }
+
+    function run() {
         showSetting()
         showCart();
         showSidebar();
         showNotification();
         showAccountAction();
+        showMobileNavbar();
         handleSidebar();
         countCartItem();
         tabNotificationAction();
-        test();
+        resizeWindow();
     }
 
-    return launch();
+    return run();
+
 
 }
 
 Vetra();
+

@@ -16,7 +16,7 @@
 
 <body>
     <section class="vetra">
-        <aside class="sidebar">
+        <aside class="sidebar reverse">
             <div class="logo-box flex-vertical">
                 <a href="#" class="logo flex-vertical">
                     <img class="image" src="assets/logo.svg" alt="Vetra logo">
@@ -326,7 +326,23 @@
                             </div>
                         </li>
                     </ul>
-                    <a class="add-product-btn btn rounded flex-center" href="#">
+                    <a class="primary-btn rounded flex-center" href="#">
+                        <i class="bi bi-plus-circle"></i>
+                        <span>Add Product</span>
+                    </a>
+                </nav>
+                <nav class="header-mobile reverse flex">
+                    <ul class="header-mobile-action flex">
+                        <li class="notify action-btn">
+                            <i class="bi bi-bell"></i>
+                            <span id="notification-badge-count" class="badge bg-error circle flex-center">10</span>
+                        </li>
+                        <li class="cart action-btn">
+                            <i class="bi bi-cart"></i>
+                            <span id="cart-badge-count" class="badge bg-error circle flex-center">4</span>
+                        </li>
+                    </ul>
+                    <a class="primary-btn rounded flex-center" href="#">
                         <i class="bi bi-plus-circle"></i>
                         <span>Add Product</span>
                     </a>
@@ -686,7 +702,24 @@
                 <h2 class="title">Settings</h2>
                 <div class="close"><i class="bi bi-arrow-right"></i></div>
             </div>
-            <ul class="setting-list scrollable"></ul>
+            <ul class="setting-list scrollable scroll-visible flex column grow">
+                <li class="setting-item-box hover pointer flex-vertical">
+                    <input type="checkbox" name="theme-color" id="theme-color">
+                    <label for="theme-color">Enable dark mode</label>
+                </li>
+                <li class="setting-item-box hover pointer flex-vertical">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Remember next visits</label>
+                </li>
+                <li class="setting-item-box hover pointer flex-vertical">
+                    <input type="checkbox" name="allow-notify" id="allow-notify">
+                    <label for="allow-notify">Allow notifications</label>
+                </li>
+                <li class="setting-item-box hover pointer flex-vertical">
+                    <input type="checkbox" name="hide-menu" id="hide-menu">
+                    <label for="hide-menu">Hide menus</label>
+                </li>
+            </ul>
             <div class="action">
                 <a class="btn" href="#">
                     All Settings

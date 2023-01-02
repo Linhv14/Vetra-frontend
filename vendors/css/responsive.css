@@ -17,7 +17,7 @@
         display: block;
     }
 
-    .add-product-btn,
+    .header .primary-btn,
     #mobile-action ~ .action-btn {
         display: none;
     }
@@ -56,6 +56,11 @@
     }
 
     .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.reverse {
+        background-color: var(--bg);
         transform: translateX(-100%);
     }
 
