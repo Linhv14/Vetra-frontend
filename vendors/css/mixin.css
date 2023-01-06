@@ -26,6 +26,32 @@
     background-color: var(--error);
 }
 
+/* btn */
+
+.btn.btn-success {
+    background-color: var(--success);
+}
+
+.btn.btn-success:hover {
+    background-color: var(--dark-success);
+}
+
+.btn.btn-warning {
+    background-color: var(--primary);
+}
+
+.btn.btn-warning:hover {
+    background-color: var(--dark-primary);
+}
+
+.btn.btn-error {
+    background-color: var(--error);
+}
+
+.btn.btn-error:hover {
+    background-color: var(--dark-error);
+}
+
 /* Reset Image */
 
 .image {

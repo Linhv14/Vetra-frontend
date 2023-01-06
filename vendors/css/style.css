@@ -45,9 +45,9 @@ ul li {
     --white: #fff;
     --light-gray: #6c757d;
 
-    --padding: 24px;
+    --padding: 22px;
     --icon-sidebar: 22px;
-    --sidebar-width: 350px;
+    --sidebar-width: 320px;
     --notification-width: 420px;
     --header-height: 100px;
     --cart-height: 300px;
@@ -228,7 +228,7 @@ body {
 }
 
 .sidebar-item:not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 .sidebar-item .bi-arrow-right {
@@ -276,7 +276,7 @@ body {
 
 .sidebar-dropdown-item {
     padding-left: calc(var(--icon-sidebar) + 12px);
-    margin-top: 10px;
+    margin-top: 4px;
     border-radius: 8px;
 }
 
@@ -337,14 +337,12 @@ body {
     height: var(--header-height);
     align-items: center;
     padding: 0 var(--padding);
-    background-color: var(--bg);
 }
 
 .container .main .header-mobile {
     position: absolute;
     bottom: 100%;
     width: 100%;
-    background-color: var(--white);
     justify-content: flex-end;
     transition: all 0.25s linear;
 }
@@ -440,8 +438,6 @@ body {
     width: 340px;
     top: 150%;
     right: 0;
-    background-color: var(--white);
-    border-radius: 12px;
     box-shadow: 1px -1px 20px -2px var(--light-gray);
     display: none;
     transition: all 0.25s ease;
@@ -582,7 +578,6 @@ body {
     flex-direction: column;
     width: var(--notification-width);
     height: 100%;
-    background-color: var(--white);
     transition: all 0.3s linear;
     visibility: hidden;
 }
@@ -738,6 +733,10 @@ body {
     border-bottom: 1px solid var(--light-border);
 }
 
+.notify-list .notify-item .notify-title {
+    transition: all 0.25s ease;
+}
+
 .notify-list .notify-item>a,
 .notify-list .notify-item>.note-box {
     display: flex;
@@ -748,12 +747,36 @@ body {
 .notify-item>.note-box .note-action {
     gap: 12px;
     font-size: 14px;
-    font-weight: 300;
     padding-top: 8px;
 }
 
 .notify-item>.note-box .note-action>a {
     color: var(--error);
+    font-weight: 300;
+    transition: all 0.25s linear;
+    position: relative;
+}
+
+.notify-item>.note-box .note-action>a::after {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary);
+    transition: all 0.25s linear;
+    z-index: -1;
+}
+
+.notify-item>.note-box .note-action>a:hover {
+    color: var(--white);
+}
+
+
+.notify-item>.note-box .note-action>a:hover::after {
+    height: 100%;
 }
 
 #notification .notify-content .time {
@@ -862,58 +885,156 @@ body {
     margin-right: 8px;
 }
 
-.btn.btn-success {
-    background-color: var(--success);
-}
-
-.btn.btn-success:hover {
-    background-color: var(--dark-success);
-}
-
-.btn.btn-warning {
-    background-color: var(--primary);
-}
-
-.btn.btn-warning:hover {
-    background-color: var(--dark-primary);
-}
-
-.btn.btn-error {
-    background-color: var(--error);
-}
-
-.btn.btn-error:hover {
-    background-color: var(--dark-error);
-}
-
 .content {
-    background-color: var(--bg);
-    margin-top: 24px;
+    margin-top: var(--padding);
     padding: 0 var(--padding);
 }
 
-.report-list {
-    flex-wrap: wrap;
-    gap: 15px;
+.report-item {
+    gap: 8px;
 }
 
-.report-list .report-item {
-    flex-grow: 1;
-    background-color: white;
+.report-item .report-header {
+    gap: 12px;
+}
+
+.report-item .report-title {
+    font-weight: 500;
+}
+
+.report-item .report-header .icon {
+    font-size: 36px;
+}
+
+.report-header .tooltip {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+    border: 1px solid var(--error);
+    color: var(--error);
+    border-radius: 50%;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.report-header .tooltip:hover {
+    color: var(--dark-error);
+    border-color: var(--dark-error);
+}
+
+.report-header .tooltip:hover .tooltip-text {
+    display: block;
+}
+
+.report-header .tooltip .tooltip-text {
+    display: none;
+    position: absolute;
+    bottom: 170%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 4px;
+    width: 150px;
     border-radius: 8px;
-    height: 300px;
-    ;
+    background-color: var(--dark);
+    font-size: 10px;
+    text-align: center;
+    font-weight: 300;
+    color: var(--white);
+    z-index: 99;
+    transition: all 0.25s ease;
 }
 
-.sales-chart,
+.report-header .tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%) rotate(45deg);
+    transform-origin: center;
+    width: 10px;
+    height: 10px;
+    background-color: var(--dark);
+    z-index: -99;
+}
+
+.report-item .report-action {
+    margin-left: auto;
+    position: relative;
+}
+
+.report-item .report-action.active {
+    color: var(--primary);
+}
+
+.report-item .report-action.active .report-action-wrapper {
+    display: flex;
+}
+
+.report-item .report-action .report-action-wrapper {
+    display: none;
+    position: absolute;
+    right: 0;
+    box-shadow: -1px 1px 10px 2px var(--light);
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+}
+
+.report-item .report-action .report-action-wrapper .report-action-item {
+    display: block;
+    min-width: 160px;
+    font-size: 14px;
+}
+
+.report-item .report-action .report-action-wrapper .report-action-item:hover {
+    color: var(--primary);
+}
+
+.report-item .report-action>span {
+    display: block;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.report-item .report-action>span:hover {
+    color: var(--primary);
+}
+
+.report-item .report-title {
+    gap: 12px;
+}
+
+.report-item.large .report-card {
+    min-height: 400px;
+}
+
+.report-item.medium .report-card {
+    min-height: 200px;
+}
+
+.report-list {
+    --gap: var(--padding);
+    --large-report: 2;
+    --medium-report: 3;
+    --small-report: 1;
+    flex-wrap: wrap;
+    gap: var(--gap);
+}
+
+.sales-chart {
+    width: calc(55% - (var(--gap)*(var(--large-report) - 1)/var(--large-report)));
+}
+
 .channels {
-    width: 48%;
+    width: calc(45% - (var(--gap)*(var(--large-report) - 1)/var(--large-report)));
 }
 
-.sales,
-.orders,
-.review {
-    width: 33%;
+.report-item.medium {
+    width: calc((100%/var(--medium-report)) - (var(--gap)*(var(--medium-report) - 1)/var(--medium-report)));
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: var(--padding);
 }
 
 .rating {

@@ -20,7 +20,7 @@ function Vetra() {
         openBtns.forEach(openBtn => {
             openBtn.addEventListener("click", () => {
                 vetra.classList.toggle("move");
-                clearState(notification)
+                makeReverse(".show")
 
                 notification.classList.add("show");
 
@@ -81,20 +81,15 @@ function Vetra() {
         const cartMobileBtn = $(".header-mobile li.cart");
         const cartBox = $(".cart-box");
 
-        cartBtn.addEventListener("click", () => {
-            fn();
-        });
+        cartBtn.addEventListener("click", handleShowCart);
 
-        cartMobileBtn.addEventListener("click", () => {
-            fn();
-        });
+        cartMobileBtn.addEventListener("click", handleShowCart);
 
-        function fn() {
+        function handleShowCart() {
             cartBox.classList.toggle("show");
             states.cart = !states.cart
 
             if (states.cart) {
-                console.log("show");
                 vetra.addEventListener('click', outerClick);
             } else {
                 vetra.removeEventListener("click", outerClick);
@@ -153,6 +148,28 @@ function Vetra() {
         function outerClick(event) {
             if ((!navbar.contains(event.target) && !btn.contains(event.target))) {
                 toggleElement(navbar, false);
+                vetra.removeEventListener("click", outerClick);
+            }
+        }
+    }
+
+    function showReportAction() {
+        const buttons = $$(".report-action");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                clearAllState("report-action", "active");
+                button.classList.add("active");
+                const actionBox = $(".report-action.active .report-action-wrapper");
+                vetra.params = { actionBox, button }
+                vetra.addEventListener("click", outerClick);
+            })
+        })
+
+        function outerClick(event) {
+            const data = vetra.params;
+            if (!data.actionBox.contains(event.target) && !data.button.contains(event.target)) {
+                data.button.classList.remove("active")
                 vetra.removeEventListener("click", outerClick);
             }
         }
@@ -252,11 +269,10 @@ function Vetra() {
 
     function singleOuterClick(e) {
         const data = e.currentTarget.params;
-
         if ((!data.main.contains(e.target) || data.close.contains(e.target)) && !data.open.contains(e.target)) {
             if (data.isMove) vetra.classList.remove("move");
             toggleElement(data.main, false);
-
+            
             vetra.removeEventListener("click", singleOuterClick);
         }
     }
@@ -287,11 +303,26 @@ function Vetra() {
         }
     }
 
-    function clearState(exceptElement) {
-        const elements = $$(".show");
+    function makeReverse(selector) {
+        const elements = $$(selector);
         elements.forEach(element => {
-            if (element != exceptElement) {
-                toggleElement(element, false)
+            toggleElement(element, false)
+        });
+    }
+
+    function clearAllState(current, state) {
+        const elements = $$("." + current + "." + state);
+        elements.forEach(element => {
+            element.classList.remove(state);
+        })
+    }
+
+    function limitBadgeNumber() {
+        const badges = $$(".badge");
+
+        badges.forEach(badge => {
+            if (badge.textContent >= 100) {
+                badge.textContent = "99+";
             }
         });
     }
@@ -303,10 +334,12 @@ function Vetra() {
         showNotification();
         showAccountAction();
         showMobileNavbar();
+        showReportAction();
         handleSidebar();
         countCartItem();
         tabNotificationAction();
         resizeWindow();
+        limitBadgeNumber();
     }
 
     return run();

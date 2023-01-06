@@ -26,6 +26,10 @@
         margin: 0 8px !important;
     }
 
+    .report-item.medium {
+        width: 100% !important;
+    }
+
 }
 
 @media only screen and (max-width: 940px) {
@@ -38,6 +42,15 @@
 
     .container .main .header .header-action .search-mobile {
         display: block;
+    }
+
+    .report-list .report-item.large {
+        width: 100%;
+    }
+
+    .report-item.medium {
+        --medium-report: 2;
+        width: calc((100%/var(--medium-report)) - (var(--gap)*(var(--medium-report) - 1)/var(--medium-report)));
     }
 }
 
