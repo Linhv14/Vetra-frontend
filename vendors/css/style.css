@@ -13,6 +13,11 @@
 a {
     text-decoration: none;
     color: black;
+    outline: none;
+}
+
+select, option {
+    outline: none;
 }
 
 ul li {
@@ -900,6 +905,7 @@ body {
 
 .report-item .report-title {
     font-weight: 500;
+    text-transform: capitalize;
 }
 
 .report-item .report-header .icon {
@@ -1006,11 +1012,17 @@ body {
 }
 
 .report-item.large .report-card {
-    min-height: 400px;
+    padding: var(--padding);
 }
 
 .report-item.medium .report-card {
-    min-height: 200px;
+    min-height: 150px;
+}
+
+.report-item.medium .report-title {
+    font-size: 22px;
+    line-height: 0;
+    padding: 12px 0;
 }
 
 .report-list {
@@ -1023,11 +1035,11 @@ body {
 }
 
 .sales-chart {
-    width: calc(55% - (var(--gap)*(var(--large-report) - 1)/var(--large-report)));
+    width: calc(60% - (var(--gap)*(var(--large-report) - 1)/var(--large-report)));
 }
 
-.channels {
-    width: calc(45% - (var(--gap)*(var(--large-report) - 1)/var(--large-report)));
+.channels-chart {
+    width: calc(40% - (var(--gap)*(var(--large-report) - 1)/var(--large-report)));
 }
 
 .report-item.medium {
@@ -1040,3 +1052,22 @@ body {
 .rating {
     width: 280px;
 }
+
+.sales-figure-wrapper {
+    margin-right: auto;
+    gap: var(--padding);
+}
+
+.sales-figure-wrapper .bi {
+    color: var(--success);
+}
+
+.sales-figure-wrapper > .bi {
+    font-size: 32px;
+}
+
+.sales-figure-wrapper .total-sales {
+    font-weight: 400;
+    font-size: 32px;
+}
+
